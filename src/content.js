@@ -11,10 +11,10 @@ export const profile = {
 };
 
 export const stats = [
-  { value: "5+", label: "TA 方向项目", detail: "PCG / Houdini / Tools" },
-  { value: "100+", label: "PCG & HDA 节点整理", detail: "图结构分区与文档" },
-  { value: "16", label: "HDA 参数封装", detail: "面向美术快速迭代" },
-  { value: "300m", label: "森林河谷展示切片", detail: "规则驱动环境生成" },
+  { value: "PCG", label: "TA 方向项目", detail: "PCG / Houdini / Tools" },
+  { value: "Graph", label: "PCG & HDA 节点整理", detail: "图结构分区与文档" },
+  { value: "HDA", label: "HDA 参数封装", detail: "面向美术快速迭代" },
+  { value: "Scene", label: "森林河谷展示切片", detail: "规则驱动环境生成" },
 ];
 
 export const projects = [
@@ -24,7 +24,7 @@ export const projects = [
     image: "/assets/project-forest.png",
     eyebrow: "PCG / Houdini HeightField / Material / Perforce",
     scope:
-      "将开放世界目标收束为 200-300m 展示切片，用 Height、Slope、Wetness、Debris、Sediment、Flow 等 Mask 驱动生态分布。",
+      "将开放世界环境目标收束为可验证的展示切片，用 Height、Slope、Wetness、Debris、Sediment、Flow 等 Mask 驱动生态分布。",
     tech: [
       "模块化 PCG Graph",
       "Spline / Difference 避让",
@@ -42,8 +42,8 @@ export const projects = [
     scope:
       "围绕冰洞入口、浮冰裂缝、冰川层次、体积雾与镜头包装，构建写实奇幻环境的技术验证场景。",
     tech: [
-      "3 套独立 PCG 图",
-      "4 条可编辑 Spline 控形",
+      "分层 PCG 生成图",
+      "可编辑 Spline 控形",
       "冰雪父材质与水 Shader",
       "资产成本与 Nanite 筛选",
     ],
@@ -64,7 +64,7 @@ export const projects = [
       "RandomSeed 参数化",
     ],
     impact:
-      "整理约 97 个节点并按功能分组，为道路、城镇、村庄类 PCG 工具打下可复用基础。",
+      "按生成阶段整理节点并拆分功能分组，为道路、城镇、村庄类 PCG 工具打下可复用基础。",
   },
   {
     title: "Houdini Procedural Tools",
