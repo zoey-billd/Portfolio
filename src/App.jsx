@@ -307,15 +307,19 @@ function ProjectArticlePage({ project }) {
             ))}
 
             <section className="article-section file-section">
-              <h3>关联文件</h3>
+              <h3>交付内容</h3>
               <ul>
-                {project.files.map((file) => (
-                  <li key={file}>
-                    <code>{file}</code>
+                {project.deliverables.map((item) => (
+                  <li key={item}>
+                    <span>{item}</span>
                   </li>
                 ))}
               </ul>
             </section>
+            <a className="article-bottom-back" href="#projects">
+              Back to project index
+              <ArrowUpRight size={16} />
+            </a>
           </div>
         </div>
       </article>

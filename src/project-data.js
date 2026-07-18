@@ -1,5 +1,3 @@
-const finalRoot = "C:/Games/Houdini/HoudiniProject/1-final";
-
 export const projects = [
   {
     slug: "heightfield-terrain-hda",
@@ -19,10 +17,10 @@ export const projects = [
     tech: ["HeightField Noise", "Hydraulic Erosion", "Slope Feature Mask", "Landscape Paint Layers"],
     impact:
       "适合作为开放世界环境的地形底座，后续可以继续接 PCG 植被、水线、道路与镜头展示。",
-    files: [
-      `${finalRoot}/heightfield_terrain_h21_v1.hip`,
-      `${finalRoot}/billd_heightfield_terrain_h21_v1.hda`,
-      "C:/Games/Houdini/HoudiniProject/analysis/heightfield_terrain_h21_v1_cn.md",
+    deliverables: [
+      "Houdini HIP terrain test scene",
+      "Commercial HeightField terrain HDA",
+      "Chinese technical breakdown note",
     ],
     article: {
       intro:
@@ -73,10 +71,10 @@ export const projects = [
     tech: ["Procedural Landform", "Karma Fog Box", "PBR Material Slots", "Modular House HDAs"],
     impact:
       "把场景构图、材质槽和模块化资产入口提前搭好，后续可以替换成 Fab/Megascans 资源并继续做镜头包装。",
-    files: [
-      `${finalRoot}/pcg_spiral_landform_prototype_v7_pbr_fog_house.hip`,
-      `${finalRoot}/pcg_spiral_landform_components_v7_pbr_fog_house.hda`,
-      "C:/Games/Houdini/HoudiniProject/analysis/pcg_spiral_landform_design_v7_pbr_fog_house_cn.md",
+    deliverables: [
+      "Houdini spiral landform prototype scene",
+      "Procedural landform component HDAs",
+      "PBR/fog/house pass technical note",
     ],
     article: {
       intro:
@@ -127,10 +125,10 @@ export const projects = [
     tech: ["Raw PCG Points", "Soft Object Path", "Module Metadata", "Axis & Pivot Audit"],
     impact:
       "把建筑生成问题拆成可验证的点输出和属性协议，便于在 UE PCG 图中继续实例化、排错和替换资产。",
-    files: [
-      `${finalRoot}/ue_farmhouse_pcg_single_building_debug_v4.hip`,
-      "C:/Games/Houdini/HoudiniProject/analysis/ue_farmhouse_pcg_single_building_debug_v4_cn.md",
-      "C:/Games/Houdini/HoudiniProject/analysis/ue_farmhouse_building_generator_v1_cn.md",
+    deliverables: [
+      "Houdini PCG module-point debug scene",
+      "Single-building PCG output note",
+      "Farmhouse generator technical breakdown",
     ],
     article: {
       intro:
@@ -180,10 +178,10 @@ export const projects = [
     tech: ["Surface Growth Mask", "Curve-to-Mesh", "Leaf Instancing", "Wind Sway Attributes"],
     impact:
       "把植物覆盖从手摆资产整理成可控工具，并为 UE 材质风、实例风和分层输出预留数据。",
-    files: [
-      `${finalRoot}/ivy_h21_industrial_generator_v2_wind.hip`,
-      `${finalRoot}/billd_ivy_generator_h21_industrial_v2_wind.hda`,
-      `${finalRoot}/ivy_h21_industrial_generator_v2_wind_cn.md`,
+    deliverables: [
+      "Houdini ivy generator test scene",
+      "Industrial ivy generator HDA",
+      "Wind-sway technical breakdown note",
     ],
     article: {
       intro:
@@ -234,11 +232,11 @@ export const projects = [
     tech: ["Growth Progress", "Timeline Driver", "Branch Delay", "Leaf Density Control"],
     impact:
       "让植被工具不只停留在最终模型，而是可以展示生成过程、参数变化和面向 UE 的最终落地。",
-    files: [
-      `${finalRoot}/billd_tree_labs_solid_growth_v3.hda`,
-      `${finalRoot}/billd_tree_labs_branch_growth_v3.hda`,
-      `${finalRoot}/billd_tree_baobab_growth_v3.hda`,
-      `${finalRoot}/tree_unreal_hda_growth_v3_cn.md`,
+    deliverables: [
+      "Solid tree growth HDA",
+      "Branch tree growth HDA",
+      "Baobab growth HDA",
+      "Tree growth technical breakdown note",
     ],
     article: {
       intro:
@@ -288,10 +286,10 @@ export const projects = [
     tech: ["Trunk Wander", "Lobe Strength", "Groove Depth", "Visible Branch Radius"],
     impact:
       "把“看起来更自然”拆成可调参数，方便美术在不同树形之间快速迭代。",
-    files: [
-      `${finalRoot}/tree_labs_branch_gnarly_trunk_v6.hip`,
-      `${finalRoot}/billd_tree_labs_branch_gnarly_trunk_v6.hda`,
-      "C:/Games/Houdini/HoudiniProject/analysis/tree_labs_branch_gnarly_trunk_v6_cn.md",
+    deliverables: [
+      "Houdini gnarly trunk test scene",
+      "Gnarly trunk HDA",
+      "Trunk surface control technical note",
     ],
     article: {
       intro:
@@ -342,9 +340,9 @@ export const projects = [
     tech: ["Slope Coverage", "Edge Buildup", "Powder Noise", "UE Snow Attributes"],
     impact:
       "把季节化资产处理封装成 HDA，适合对岩石、建筑和环境道具快速添加雪层变化。",
-    files: [
-      `${finalRoot}/billd_snow_coverage_h21_ue56_v1.hda`,
-      "C:/Games/Houdini/HoudiniProject/analysis/snow_coverage_h21_ue56_v1_cn.md",
+    deliverables: [
+      "Thick snow coverage HDA",
+      "Snow coverage technical breakdown note",
     ],
     article: {
       intro:
@@ -395,10 +393,10 @@ export const projects = [
     tech: ["Cavity Mask", "Edge/Shade Boost", "Moss Carpet Geometry", "Instance Points"],
     impact:
       "让石头、墙面和道具可以快速获得局部老化与潮湿感，同时保留可调的 mask 与实例化入口。",
-    files: [
-      `${finalRoot}/moss_coverage_h21_ue56_v1.hip`,
-      `${finalRoot}/billd_moss_coverage_h21_ue56_v1.hda`,
-      `${finalRoot}/moss_coverage_h21_ue56_v1_cn.md`,
+    deliverables: [
+      "Houdini moss coverage test scene",
+      "Moss coverage HDA",
+      "Moss mask technical breakdown note",
     ],
     article: {
       intro:
@@ -449,10 +447,10 @@ export const projects = [
     tech: ["Impact Mask", "Fracture Zone Attributes", "VAT-ready Mesh", "UE Debris Points"],
     impact:
       "将破坏效果包装成可复用 HDA，比单次模拟更容易进入 UE 验证和后续美术迭代。",
-    files: [
-      `${finalRoot}/procedural_damage_building_vat_v7.hip`,
-      `${finalRoot}/billd_building_damage_vat_v1.hda`,
-      `${finalRoot}/procedural_damage_building_vat_v7_cn.md`,
+    deliverables: [
+      "Houdini building damage prototype scene",
+      "Building damage VAT HDA",
+      "VAT-ready damage technical breakdown note",
     ],
     article: {
       intro:
