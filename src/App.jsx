@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowUpRight,
   Boxes,
@@ -23,10 +23,15 @@ const navItems = [
 ];
 
 const iconMap = [Boxes, Workflow, SlidersHorizontal, ShieldCheck];
+const projectScrollKey = "zoeyPortfolioProjectScrollY";
 
 function getProjectSlugFromHash() {
   const match = window.location.hash.match(/^#\/projects\/([^?#/]+)/);
   return match ? decodeURIComponent(match[1]) : "";
+}
+
+function rememberProjectScrollPosition() {
+  sessionStorage.setItem(projectScrollKey, String(window.scrollY));
 }
 
 const projectMediaBlueprints = [
@@ -58,12 +63,39 @@ const projectMediaBlueprints = [
 
 function App() {
   const [projectSlug, setProjectSlug] = useState(getProjectSlugFromHash);
+  const wasProjectOpen = useRef(Boolean(projectSlug));
 
   useEffect(() => {
     const handleHashChange = () => setProjectSlug(getProjectSlugFromHash());
     window.addEventListener("hashchange", handleHashChange);
     return () => window.removeEventListener("hashchange", handleHashChange);
   }, []);
+
+  useEffect(() => {
+    if (projectSlug) {
+      wasProjectOpen.current = true;
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      return;
+    }
+
+    if (!wasProjectOpen.current || window.location.hash !== "#projects") {
+      return;
+    }
+
+    wasProjectOpen.current = false;
+
+    const storedScrollY = Number(sessionStorage.getItem(projectScrollKey));
+
+    if (!Number.isFinite(storedScrollY)) {
+      return;
+    }
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: storedScrollY, left: 0, behavior: "auto" });
+      });
+    });
+  }, [projectSlug]);
 
   const activeProject = useMemo(
     () => projects.find((project) => project.slug === projectSlug),
@@ -230,7 +262,11 @@ function Projects() {
         <div className="project-grid">
           {projects.map((project, index) => (
             <article className={`project-card project-card-${index + 1}`} key={project.title}>
-              <a className="project-card-link" href={`#/projects/${project.slug}`}>
+              <a
+                className="project-card-link"
+                href={`#/projects/${project.slug}`}
+                onClick={rememberProjectScrollPosition}
+              >
                 <ProjectMediaFrame project={project} index={index} />
                 <div className="project-content">
                   <p className="project-eyebrow">{project.eyebrow}</p>
