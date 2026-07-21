@@ -181,6 +181,20 @@ function Hero() {
           <source src="/assets/hero-loop.mp4" type="video/mp4" />
         </video>
       </div>
+      <aside className="hero-paper-scrap" aria-label="Portfolio links">
+        <p className="scrap-kicker">Portfolio Links</p>
+        <div className="scrap-links">
+          <a className="scrap-link" href={profile.bilibili} target="_blank" rel="noreferrer">
+            <span>Bilibili 作品集</span>
+            <ArrowUpRight size={15} />
+          </a>
+          <a className="scrap-link" href={profile.resumePdf} target="_blank" rel="noreferrer">
+            <span>Resume_Zoey_UE_TA.pdf</span>
+            <ArrowUpRight size={15} />
+          </a>
+        </div>
+        <p className="scrap-note">portfolio repo / resume in progress</p>
+      </aside>
       <NavBar />
       <div className="hero-inner">
         <p className="eyebrow">Technical Art Portfolio 2026</p>
