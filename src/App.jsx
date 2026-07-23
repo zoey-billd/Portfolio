@@ -106,6 +106,7 @@ function App() {
     <ProjectArticlePage project={activeProject} />
   ) : (
     <main className="site-shell">
+      <NavBar />
       <Hero />
       <Intro />
       <Projects />
@@ -286,7 +287,6 @@ function Hero() {
         </div>
         <p className="scrap-note">portfolio repo / resume in progress</p>
       </aside>
-      <NavBar />
       <div className="hero-inner">
         <p className="eyebrow">Technical Art Portfolio 2026</p>
         <h1>

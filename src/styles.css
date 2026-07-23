@@ -36,6 +36,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 96px;
   background: var(--paper);
 }
 
@@ -313,18 +314,6 @@ video {
   transform: translateX(-50%);
 }
 
-.nav-bar::before {
-  position: absolute;
-  top: -8px;
-  left: 12%;
-  width: 46px;
-  height: 8px;
-  border: 1px solid rgba(29, 27, 24, 0.12);
-  border-bottom: 0;
-  content: "";
-  pointer-events: none;
-}
-
 .brand-mark {
   display: inline-flex;
   width: 82px;
@@ -430,10 +419,10 @@ video {
 .hero-paper-scrap {
   position: absolute;
   top: 48%;
-  right: 4.5%;
+  right: 7.5%;
   z-index: 6;
   display: flex;
-  width: min(390px, 28vw);
+  width: min(440px, 31vw);
   height: clamp(190px, 20vh, 250px);
   flex-direction: column;
   padding: 24px 34px;
@@ -1384,13 +1373,6 @@ video {
     grid-template-columns: auto minmax(0, 1fr) auto;
     gap: 8px;
     padding: 7px;
-  }
-
-  .nav-bar::before {
-    top: -6px;
-    left: 18%;
-    width: 34px;
-    height: 6px;
   }
 
   .brand-mark {
