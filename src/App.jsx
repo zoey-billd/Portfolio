@@ -102,11 +102,9 @@ function App() {
     [projectSlug],
   );
 
-  if (activeProject) {
-    return <ProjectArticlePage project={activeProject} />;
-  }
-
-  return (
+  const page = activeProject ? (
+    <ProjectArticlePage project={activeProject} />
+  ) : (
     <main className="site-shell">
       <Hero />
       <Intro />
@@ -114,6 +112,94 @@ function App() {
       <Strengths />
       <Contact />
     </main>
+  );
+
+  return (
+    <>
+      <CinnamorollEffects />
+      {page}
+    </>
+  );
+}
+
+function CinnamorollEffects() {
+  const [cursor, setCursor] = useState({ x: 0, y: 0, visible: false });
+  const [snowflakes, setSnowflakes] = useState([]);
+  const snowflakeId = useRef(0);
+
+  useEffect(() => {
+    const handlePointerMove = (event) => {
+      setCursor({ x: event.clientX, y: event.clientY, visible: true });
+    };
+
+    const handlePointerLeave = () => {
+      setCursor((current) => ({ ...current, visible: false }));
+    };
+
+    const handlePointerDown = (event) => {
+      if (event.pointerType === "touch") {
+        return;
+      }
+
+      const burst = Array.from({ length: 5 }, (_, index) => ({
+        id: snowflakeId.current++,
+        x: event.clientX,
+        y: event.clientY,
+        drift: `${(index - 2) * 13 + (index % 2 ? 4 : -4)}px`,
+        delay: `${index * 35}ms`,
+        size: `${12 + (index % 2) * 4}px`,
+      }));
+
+      setSnowflakes((current) => [...current.slice(-20), ...burst]);
+
+      window.setTimeout(() => {
+        const ids = new Set(burst.map((flake) => flake.id));
+        setSnowflakes((current) => current.filter((flake) => !ids.has(flake.id)));
+      }, 1050);
+    };
+
+    window.addEventListener("pointermove", handlePointerMove, { passive: true });
+    window.addEventListener("pointerdown", handlePointerDown);
+    window.addEventListener("blur", handlePointerLeave);
+    document.documentElement.addEventListener("mouseleave", handlePointerLeave);
+
+    return () => {
+      window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("pointerdown", handlePointerDown);
+      window.removeEventListener("blur", handlePointerLeave);
+      document.documentElement.removeEventListener("mouseleave", handlePointerLeave);
+    };
+  }, []);
+
+  return (
+    <>
+      <div className="cinnamon-watermark" aria-hidden="true" />
+      <div
+        className={`cinnamon-cursor${cursor.visible ? " is-visible" : ""}`}
+        style={{
+          left: `${cursor.x}px`,
+          top: `${cursor.y}px`,
+        }}
+        aria-hidden="true"
+      />
+      <div className="snowflake-layer" aria-hidden="true">
+        {snowflakes.map((flake) => (
+          <span
+            className="snowflake-burst"
+            key={flake.id}
+            style={{
+              left: `${flake.x}px`,
+              top: `${flake.y}px`,
+              "--snow-drift": flake.drift,
+              "--snow-delay": flake.delay,
+              "--snow-size": flake.size,
+            }}
+          >
+            ❄
+          </span>
+        ))}
+      </div>
+    </>
   );
 }
 
@@ -150,7 +236,12 @@ function NavBar() {
   return (
     <header className="nav-bar">
       <a className="brand-mark" href="#top" aria-label="Zoey Xie home">
-        <span>ZX</span>
+        <span className="brand-initials">ZX</span>
+        <img
+          className="brand-cinnamon"
+          src="/assets/cinnamoroll/cinnamoroll-hat-scarf.png"
+          alt=""
+        />
       </a>
       <nav className="nav-links" aria-label="Primary navigation">
         {navItems.map((item) => (
@@ -210,10 +301,6 @@ function Hero() {
           <a className="primary-action" href="#projects">
             <Play size={18} fill="currentColor" />
             View Selected Work
-          </a>
-          <a className="secondary-action" href={profile.bilibili} target="_blank" rel="noreferrer">
-            Bilibili Portfolio
-            <ArrowUpRight size={18} />
           </a>
         </div>
       </div>
