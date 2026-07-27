@@ -6,6 +6,8 @@ export const projects = [
     eyebrow: "Houdini 21 / HeightField / UE Landscape",
     category: "Terrain Tool",
     image: "/assets/houdini/heightfield-terrain.png",
+    video: "/assets/houdini/videos/heightfield-terrain.mp4",
+    noteHref: "/assets/houdini/notes/heightfield_terrain_h21_v1.md",
     visual: {
       label: "TERRAIN HDA",
       hero: "HEIGHTFIELD / MASK LAYERS",
@@ -59,7 +61,9 @@ export const projects = [
     subtitle: "螺旋地貌、PBR 材质与体积雾场景",
     eyebrow: "Houdini SOP / Karma / PBR / Environment Prototype",
     category: "Environment Prototype",
-    image: "/assets/houdini/spiral-landform.png",
+    image: "/assets/houdini/portfolio/spiral-landform.png",
+    video: "/assets/houdini/videos/spiral-landform.mp4",
+    noteHref: "/assets/houdini/notes/youku_pcg_spiral_landform_prototype_v7_pbr_fog_house.md",
     visual: {
       label: "LANDSCAPE STUDY",
       hero: "SPIRAL LANDFORM / FOG PASS",
@@ -108,54 +112,56 @@ export const projects = [
     },
   },
   {
-    slug: "farmhouse-pcg-module-points",
-    title: "Farmhouse PCG Module Points",
-    subtitle: "UE 农舍模块点输出与 PCG 调试",
-    eyebrow: "Houdini / UE PCG / KitBash / Metadata",
-    category: "UE PCG Bridge",
-    image: "/assets/houdini/farmhouse-pcg.png",
+    slug: "medieval-fantasy-town-generator",
+    title: "Medieval Fantasy Town Generator",
+    subtitle: "中世纪奇幻城镇的模块化生成",
+    eyebrow: "Houdini HDA / Modular Buildings / UE Instance Points",
+    category: "Environment Generator",
+    image: "/assets/houdini/portfolio/medieval-town.png",
+    video: "/assets/houdini/videos/medieval-town.mp4",
+    noteHref: "/assets/houdini/notes/medieval_fantasy_town_generator_v1.md",
     visual: {
-      label: "PCG MODULE POINTS",
-      hero: "FARMHOUSE / RAW OUTPUT",
-      flow: "footprint -> module points -> UE soft paths -> PCG graph",
-      slots: ["Footprint", "Module Type", "Soft Path", "PCG Debug"],
+      label: "TOWN GENERATOR",
+      hero: "MODULAR TOWN / UE POINTS",
+      flow: "terrain -> houses -> walls -> cathedral -> instances",
+      slots: ["Terrain", "House Modules", "Wall Towers", "UE Points"],
     },
     scope:
-      "围绕 UE 农舍 KitBash 资产建立 Houdini 调试场景，输出带模块语义和 soft object path 的 raw PCG points。",
-    tech: ["Raw PCG Points", "Soft Object Path", "Module Metadata", "Axis & Pivot Audit"],
+      "从台地山体开始生成房屋、屋顶、城墙、塔楼和山顶大教堂，并输出带模块语义的 UE 实例点。",
+    tech: ["Terraced Terrain", "Modular Buildings", "Wall & Tower Layout", "UE Instance Points"],
     impact:
-      "把建筑生成问题拆成可验证的点输出和属性协议，便于在 UE PCG 图中继续实例化、排错和替换资产。",
+      "把完整城镇拆成可控的地形、建筑和资源路径模块，适合作为 UE 环境 PCG 的场景级案例。",
     deliverables: [
-      "Houdini PCG module-point debug scene",
-      "Single-building PCG output note",
-      "Farmhouse generator technical breakdown",
+      "Houdini medieval town generator HIP",
+      "Modular house, roof, wall and tower outputs",
+      "UE instance-point technical breakdown",
     ],
     article: {
       intro:
-        "这个项目的重点是把建筑生成从“生成一个看起来像房子的 mesh”转向“给 UE PCG 提供干净、可解释的模块点”。它很适合放在工具向 TA 作品集中，因为它展示的是协议、调试和引擎落地思路。",
+        "这个项目把中世纪奇幻城镇拆成可复用的地形、房屋、屋顶、城墙、塔楼和教堂模块，再通过统一的参数和实例点输出形成完整场景。",
       sections: [
         {
           heading: "设计目标",
           items: [
-            "正式输出只保留 UE PCG 需要的模块点，避免把调试 shell 混进生产输出。",
-            "每个点保留 building、facade、floor、bay、module type 等语义字段，便于 UE 侧调试。",
-            "依据资产轴向和 pivot 审计结果处理旋转、缩放与原始模块尺寸。",
+            "从台地山体和城镇半径开始控制整体布局，保持建筑群的空间层级。",
+            "把房屋、屋顶、城墙、塔楼和大教堂拆成独立模块，方便替换资产。",
+            "输出 UE 可识别的模块实例点和资源路径，为后续引擎落地预留接口。",
           ],
         },
         {
           heading: "技术流程",
           items: [
-            "先用 footprint 确认建筑边界，再逐步打开墙、角、门窗、屋顶和装饰模块。",
-            "通过 `unreal_pcg_params`、`Mesh` soft object path 和模块元数据对接 UE PCG。",
-            "默认关闭可见代理 shell，让 Houdini 输出更接近真实生产管线。",
+            "用 seed、town radius、terrace count 和 house count 控制城镇规模与随机变化。",
+            "按房屋、屋顶、城墙、塔楼、尖塔和植被模块组织生成网络。",
+            "通过 OUT_UNREAL_COMBINED 和 OUT_MODULE_INSTANCE_POINTS 检查完整预览与 UE 属性。",
           ],
         },
         {
           heading: "作品集展示方式",
           items: [
-            "卡片展示农舍模块预览图，文章强调点协议和调试顺序。",
-            "后续可补一张 UE PCG 图截图，以及点属性表和最终实例化效果。",
-            "可以和建筑/村庄 PCG 项目合并成一个更完整的场景工具链案例。",
+            "首页卡片展示城镇整体预览图，详情页用录屏补充参数化生成过程。",
+            "文章中强调地形、建筑模块和 UE 实例点之间的层级关系。",
+            "后续可以补充 UE Houdini Engine 实例化结果和资源替换前后对照。",
           ],
         },
       ],
@@ -167,6 +173,9 @@ export const projects = [
     subtitle: "建筑表面藤蔓、叶片实例与风摆属性",
     eyebrow: "Houdini HDA / Vines / Instancing / Wind Attributes",
     category: "Vegetation Tool",
+    image: "/assets/houdini/portfolio/industrial-ivy.png",
+    video: "/assets/houdini/videos/industrial-ivy.mp4",
+    noteHref: "/assets/houdini/notes/ivy_h21_industrial_generator_v1.md",
     visual: {
       label: "VEGETATION HDA",
       hero: "IVY GENERATOR / WIND SWAY",
@@ -216,26 +225,28 @@ export const projects = [
   },
   {
     slug: "tree-growth-hda-pack",
-    title: "Tree Growth HDA Pack",
-    subtitle: "时间轴生长、树枝展开与叶片延迟",
+    title: "Baobab Growth HDA",
+    subtitle: "猴面包树生长、枝条展开与叶片延迟",
     eyebrow: "Houdini HDA / Tree Growth / Timeline / UE Bake",
     category: "Vegetation Toolset",
-    image: "/assets/houdini/tree-growth.png",
+    image: "/assets/houdini/portfolio/baobab-growth.png",
+    video: "/assets/houdini/videos/baobab-growth.mp4",
+    noteHref: "/assets/houdini/notes/billd_tree_baobab_growth_v3_rebuilt.md",
     visual: {
-      label: "TREE TOOLSET",
-      hero: "GROWTH TIMELINE / LEAF MASK",
+      label: "BAOBAB GROWTH HDA",
+      hero: "GROWTH TIMELINE / VISIBLE TREE",
       flow: "trunk -> branches -> leaves -> bake-ready mesh",
       slots: ["Growth", "Branches", "Leaves", "Bake"],
     },
     scope:
-      "将多种树形 HDA 整理为生长展示版本，支持树干、树枝、叶片按时间逐步出现，并保留静态 bake 的使用方式。",
+      "围绕猴面包树的瓶状树干、主枝、次枝和程序化叶片建立生长展示版本，并保留静态 bake 的使用方式。",
     tech: ["Growth Progress", "Timeline Driver", "Branch Delay", "Leaf Density Control"],
     impact:
-      "让植被工具不只停留在最终模型，而是可以展示生成过程、参数变化和面向 UE 的最终落地。",
+      "让树木工具不只停留在最终模型，而是可以展示从树干、枝条到叶片的生成过程和面向 UE 的最终落地。",
     deliverables: [
-      "Solid tree growth HDA",
-      "Branch tree growth HDA",
       "Baobab growth HDA",
+      "Growth timeline preview branch",
+      "Static UE bake-ready tree output",
       "Tree growth technical breakdown note",
     ],
     article: {
@@ -275,6 +286,9 @@ export const projects = [
     subtitle: "崎岖树干、纵向沟槽与可控轮廓",
     eyebrow: "Houdini HDA / Trunk Surface / Branch Mesh / Leaf Density",
     category: "Vegetation Detail",
+    image: "/assets/houdini/portfolio/gnarly-trunk.png",
+    video: "/assets/houdini/videos/gnarly-trunk.mp4",
+    noteHref: "/assets/houdini/notes/tree_labs_branch_mianbao_trunk_v5.md",
     visual: {
       label: "TREE DETAIL HDA",
       hero: "GNARLY TRUNK / SURFACE CONTROL",
@@ -323,12 +337,70 @@ export const projects = [
     },
   },
   {
+    slug: "visible-trunk-hda",
+    title: "Visible Trunk HDA",
+    subtitle: "可见树干实体、分枝连接与叶片布局",
+    eyebrow: "Houdini HDA / Visible Trunk / Branch Mesh / UE Bake",
+    category: "Vegetation Tool",
+    image: "/assets/houdini/portfolio/visible-trunk.png",
+    video: "/assets/houdini/videos/visible-trunk.mp4",
+    noteHref: "/assets/houdini/notes/tree_labs_branch_visible_trunk_v4.md",
+    visual: {
+      label: "VISIBLE TRUNK HDA",
+      hero: "TREE SHELL / BRANCH OUTPUT",
+      flow: "rugged trunk -> branch mesh -> leaf points -> UE bake",
+      slots: ["Trunk Shell", "Branch Mesh", "Leaf Points", "Bake Output"],
+    },
+    scope:
+      "以可见树干实体为核心，结合闭合树干 shell、曲线转 mesh 的枝条和 connected maple 叶片，输出完整树体。",
+    tech: ["Rugged Trunk Shell", "Curve-to-Mesh Branches", "Connected Maple Leaves", "Static UE Bake"],
+    impact:
+      "解决程序化树干过薄或只剩线框的问题，让树干、枝条和叶片在视口与后续 UE 处理中都保持可读。",
+    deliverables: [
+      "Tree Labs visible trunk V4 HIP",
+      "Visible trunk HDA output",
+      "Branch and leaf attachment technical note",
+    ],
+    article: {
+      intro:
+        "这个项目关注程序化树的可见实体与连接关系：先生成有体积的 rugged trunk，再将枝条转为 mesh，并把叶片稳定地连接到枝条中段。",
+      sections: [
+        {
+          heading: "设计目标",
+          items: [
+            "让主干在视口中保持完整实体，而不是只显示细线或开放曲面。",
+            "将枝条曲线转为可控 mesh，并保留叶片连接所需的方向与偏移。",
+            "默认关闭时间轴驱动，优先提供可直接检查和烘焙的静态树体。",
+          ],
+        },
+        {
+          heading: "技术流程",
+          items: [
+            "通过 trunk surface radius、roughness、sides 和 rings 控制树干 shell。",
+            "按 branch count、upper branch height 和 branch spread 组织分枝层级。",
+            "使用 leaf density、leaf count 和 attach padding 控制叶片数量与连接质量。",
+          ],
+        },
+        {
+          heading: "作品集展示方式",
+          items: [
+            "卡片展示完整树体，录屏展示从树干到枝条和叶片输出的流程。",
+            "详情页强调实体树干、枝条 mesh 和叶片实例点的分层检查。",
+            "后续可补充参数对比图，展示粗糙度、分枝密度和叶片数量的变化。",
+          ],
+        },
+      ],
+    },
+  },
+  {
     slug: "snow-coverage-hda",
     title: "Snow Coverage HDA",
     subtitle: "厚积雪覆盖、边缘堆积与 UE 材质属性",
     eyebrow: "Houdini 21 / UE5.6 / Snow Mask / Material Attributes",
     category: "Surface Treatment",
-    image: "/assets/houdini/snow-coverage.png",
+    image: "/assets/houdini/portfolio/snow-coverage.png",
+    video: "/assets/houdini/videos/snow-coverage.mp4",
+    noteHref: "/assets/houdini/notes/snow_coverage_h21_ue56_v1.md",
     visual: {
       label: "SURFACE COVERAGE",
       hero: "THICK SNOW / EDGE LIP",
@@ -381,7 +453,9 @@ export const projects = [
     subtitle: "缝隙、阴影与潮湿区域的苔藓覆盖",
     eyebrow: "Houdini 21 / UE5.6 / Moss Mask / Instancing",
     category: "Surface Treatment",
-    image: "/assets/houdini/moss-coverage.png",
+    image: "/assets/houdini/portfolio/moss-coverage.png",
+    video: "/assets/houdini/videos/moss-coverage.mp4",
+    noteHref: "/assets/houdini/notes/moss_coverage_h21_ue56_v1.md",
     visual: {
       label: "SURFACE COVERAGE",
       hero: "MOSS MASK / FUZZ POINTS",
@@ -435,7 +509,9 @@ export const projects = [
     subtitle: "可控建筑破坏、碎块属性与 UE VAT 准备",
     eyebrow: "Houdini HDA / Impact Mask / VAT / UE Debris",
     category: "FX Tool",
-    image: "/assets/houdini/building-damage-vat.png",
+    image: "/assets/houdini/portfolio/building-damage.png",
+    video: "/assets/houdini/videos/building-damage.mp4",
+    noteHref: "/assets/houdini/notes/procedural_damage_building_vat_v7.md",
     visual: {
       label: "FX HDA",
       hero: "BUILDING DAMAGE / VAT READY",

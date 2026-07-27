@@ -217,7 +217,12 @@ function ProjectMediaFrame({ project, index }) {
         <span>{String(index + 1).padStart(2, "0")}</span>
       </div>
       {project.image ? (
-        <img className="project-preview-image" src={project.image} alt={`${project.title} preview`} />
+        <>
+          <img className="project-preview-image" src={project.image} alt={`${project.title} preview`} />
+          <span className="media-watermark project-preview-watermark" aria-hidden="true">
+            ZOEY XIE / PCG + TOOLS TA
+          </span>
+        </>
       ) : (
         <div className="media-stage">
           <span>{media.hero}</span>
@@ -230,6 +235,51 @@ function ProjectMediaFrame({ project, index }) {
         ))}
       </div>
     </div>
+  );
+}
+
+function ProjectMediaGallery({ project }) {
+  return (
+    <section className="article-media-gallery" aria-label={`${project.title} project media`}>
+      <div className="article-media-heading">
+        <div>
+          <p className="eyebrow">Process Media</p>
+          <h3>截图与录屏</h3>
+        </div>
+        {project.noteHref ? (
+          <a className="project-note-link" href={project.noteHref} target="_blank" rel="noreferrer">
+            Open technical note
+            <ArrowUpRight size={16} />
+          </a>
+        ) : null}
+      </div>
+      <div className="media-gallery-grid">
+        {project.image ? (
+          <figure className="media-gallery-item">
+            <div className="media-asset">
+              <img src={project.image} alt={`${project.title} project screenshot`} />
+              <span className="media-watermark" aria-hidden="true">
+                ZOEY XIE / PCG + TOOLS TA
+              </span>
+            </div>
+            <figcaption>Houdini viewport / project result</figcaption>
+          </figure>
+        ) : null}
+        {project.video ? (
+          <figure className="media-gallery-item">
+            <div className="media-asset">
+              <video controls preload="metadata" poster={project.image}>
+                <source src={project.video} type="video/mp4" />
+              </video>
+              <span className="media-watermark" aria-hidden="true">
+                ZOEY XIE / PCG + TOOLS TA
+              </span>
+            </div>
+            <figcaption>Process recording / parameter and output check</figcaption>
+          </figure>
+        ) : null}
+      </div>
+    </section>
   );
 }
 
@@ -415,6 +465,8 @@ function ProjectArticlePage({ project }) {
           </div>
           <ProjectMediaFrame project={project} index={projects.indexOf(project)} />
         </header>
+
+        <ProjectMediaGallery project={project} />
 
         <div className="article-body">
           <aside className="article-summary-panel">
