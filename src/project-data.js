@@ -400,7 +400,7 @@ export const projects = [
     category: "Surface Treatment",
     image: "/assets/houdini/portfolio/snow-coverage.png",
     video: "/assets/houdini/videos/snow-coverage.mp4",
-    noteHref: "/assets/houdini/notes/snow_coverage_h21_ue56_v1.md",
+    noteHref: "/assets/houdini/notes/snow_coverage_h21_ue56_v2.md",
     visual: {
       label: "SURFACE COVERAGE",
       hero: "THICK SNOW / EDGE LIP",
