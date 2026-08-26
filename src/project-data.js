@@ -56,62 +56,6 @@ export const projects = [
     },
   },
   {
-    slug: "spiral-landform-prototype",
-    title: "PCG Spiral Landform Prototype",
-    subtitle: "螺旋地貌、PBR 材质与体积雾场景",
-    eyebrow: "Houdini SOP / Karma / PBR / Environment Prototype",
-    category: "Environment Prototype",
-    image: "/assets/houdini/portfolio/spiral-landform.png",
-    video: "/assets/houdini/videos/spiral-landform.mp4",
-    noteHref: "/assets/houdini/notes/youku_pcg_spiral_landform_prototype_v7_pbr_fog_house.md",
-    visual: {
-      label: "LANDSCAPE STUDY",
-      hero: "SPIRAL LANDFORM / FOG PASS",
-      flow: "terrain forms -> material slots -> fog volume -> house modules",
-      slots: ["SOP Layout", "PBR Slots", "Karma Fog", "House Kit"],
-    },
-    scope:
-      "以螺旋地貌为视觉中心，整合 PBR 占位材质、Karma 体积雾和程序化房屋模块，形成可继续替换资产的环境原型。",
-    tech: ["Procedural Landform", "Karma Fog Box", "PBR Material Slots", "Modular House HDAs"],
-    impact:
-      "把场景构图、材质槽和模块化资产入口提前搭好，后续可以替换成 Fab/Megascans 资源并继续做镜头包装。",
-    deliverables: [
-      "Houdini spiral landform prototype scene",
-      "Procedural landform component HDAs",
-      "PBR/fog/house pass technical note",
-    ],
-    article: {
-      intro:
-        "这个项目更偏环境概念验证：它把地貌形态、材质槽、雾效和房屋细节先组合成一个可演进的场景框架。对 TA 作品集来说，它适合展示你如何把视觉目标拆成可替换、可扩展的系统。",
-      sections: [
-        {
-          heading: "设计目标",
-          items: [
-            "围绕螺旋地貌建立一个有明确视觉中心的程序化场景。",
-            "预留草地、岩石、道路、屋顶、木材等 PBR 材质槽，方便后续替换真实资源。",
-            "加入体积雾和房屋细节，让技术原型更接近最终镜头，而不是单独节点测试。",
-          ],
-        },
-        {
-          heading: "技术流程",
-          items: [
-            "使用 SOP 组织地貌、道路、房屋、树和石墙等模块。",
-            "在 Karma 中建立快速预览和高质量渲染入口，便于对比构图和气氛。",
-            "将场景模块导出为 HDA，为后续 UE 或更复杂的 Houdini 场景复用做准备。",
-          ],
-        },
-        {
-          heading: "作品集展示方式",
-          items: [
-            "展示当前 Karma 预览图作为项目封面。",
-            "文章中建议补充材质槽、雾效开关、房屋模块和地貌层级的局部截图。",
-            "后续可把它升级为“从 Houdini 原型到 UE 场景”的完整案例。",
-          ],
-        },
-      ],
-    },
-  },
-  {
     slug: "medieval-fantasy-town-generator",
     title: "Medieval Fantasy Town Generator",
     subtitle: "中世纪奇幻城镇的模块化生成",
@@ -168,33 +112,89 @@ export const projects = [
     },
   },
   {
-    slug: "industrial-ivy-generator",
-    title: "Industrial Ivy Generator",
-    subtitle: "建筑表面藤蔓、叶片实例与风摆属性",
-    eyebrow: "Houdini HDA / Vines / Instancing / Wind Attributes",
-    category: "Vegetation Tool",
-    image: "/assets/houdini/portfolio/industrial-ivy.png",
-    video: "/assets/houdini/videos/industrial-ivy.mp4",
-    noteHref: "/assets/houdini/notes/ivy_h21_industrial_generator_v1.md",
+    slug: "container-habitat-generator",
+    title: "Container Habitat Generator",
+    subtitle: "模块化箱体居住空间生成",
+    eyebrow: "Houdini HDA / Modular Containers / Layout Rules / Karma Preview",
+    category: "Environment Generator",
+    image: "/assets/houdini/portfolio/container-habitat.png",
+    noteHref: "/assets/houdini/notes/container_habitat_generator.md",
     visual: {
-      label: "VEGETATION HDA",
-      hero: "IVY GENERATOR / WIND SWAY",
-      flow: "surface input -> growth mask -> vine curves -> UE leaf points",
-      slots: ["Surface Mask", "Curve Mesh", "Leaf Points", "Wind Data"],
+      label: "CONTAINER HABITAT",
+      hero: "STACKED MODULES / WALKWAYS",
+      flow: "layout rules -> modules -> platforms -> stairs -> supports",
+      slots: ["Containers", "Walkways", "Railings", "Props"],
     },
     scope:
-      "输入建筑表面后生成藤蔓曲线、闭合藤蔓 mesh 和叶片实例点，并写出 UE 可读取的实例路径与风摆属性。",
-    tech: ["Surface Growth Mask", "Curve-to-Mesh", "Leaf Instancing", "Wind Sway Attributes"],
+      "用 Houdini 生成可堆叠的箱体居住空间，组合集装箱模块、平台、楼梯、栏杆、门窗、支撑和少量道具，并保留参数化布局迭代入口。",
+    tech: ["Modular Container Layout", "Deterministic Seed", "Stairs & Railings", "Material Attributes"],
     impact:
-      "把植物覆盖从手摆资产整理成可控工具，并为 UE 材质风、实例风和分层输出预留数据。",
+      "把参考图拆解为可控模块和空间规则，快速生成营地、临时聚落或科幻生活区的结构化 blockout，为后续 UE 替换资产与二次摆放提供基础。",
     deliverables: [
-      "Houdini ivy generator test scene",
-      "Industrial ivy generator HDA",
-      "Wind-sway technical breakdown note",
+      "Container habitat generator HDA",
+      "Houdini SOP layout scene",
+      "Karma/OpenGL preview renders",
+      "Technical art breakdown note",
     ],
     article: {
       intro:
-        "藤蔓工具的亮点在于它同时考虑了生成形态、UE 实例替换和风摆数据。它不是只输出一团植物，而是把藤条、叶片和调试层分开，让下游美术可以更清楚地接管。",
+        "这个项目不是随机摆一些箱子，而是把箱体空间拆成层级、错位、悬挑、平台、楼梯、栏杆和支撑关系。它适合作为环境 TA 的程序化 blockout 案例：先保证空间逻辑和可读轮廓，再继续增加材质和道具细节。",
+      sections: [
+        {
+          heading: "设计目标",
+          items: [
+            "在 Hero Camera 下形成有高低层次、前后关系和视觉中心的模块化箱体空间。",
+            "用规则控制楼层、行列、前后深度、错位强度和悬挑比例，而不是手工逐个摆放。",
+            "让平台、楼梯、栏杆和支撑解释空间如何被使用，避免箱体只停留在堆叠外形。",
+          ],
+        },
+        {
+          heading: "技术流程",
+          items: [
+            "先生成可复现的模块布局，再按 closed、open、drawer、glass 等类型添加局部组件。",
+            "在局部坐标系内制作门板、波纹板、把手、窗框、平台和栏杆，再跟随箱体整体变换。",
+            "为几何体写入 module、component、level、route、supported 和 material 等属性，方便后续筛选、调试和引擎材质替换。",
+          ],
+        },
+        {
+          heading: "作品集展示方式",
+          items: [
+            "首页卡片展示结构完整的三分之四视角，让观众先读到高低错落和交通路线。",
+            "详情页说明它当前是结构化 blockout / MVP，重点在生成骨架、空间逻辑和可扩展参数。",
+            "后续可以补参数变化、支撑检查、材质替换和 UE 场景落地对照图。",
+          ],
+        },
+      ],
+    },
+  },
+  {
+    slug: "industrial-ivy-generator",
+    title: "Industrial Ivy Generator",
+    subtitle: "建筑表面藤蔓、叶片实例与风摆属性",
+    eyebrow: "Houdini 21 / Surface Growth / Wind Attributes / UE Instances",
+    category: "Vegetation Tool",
+    image: "/assets/houdini/portfolio/industrial-ivy.png",
+    video: "/assets/houdini/videos/industrial-ivy.mp4",
+    noteHref: "/assets/houdini/notes/ivy_h21_industrial_generator_v2_wind.md",
+    visual: {
+      label: "VEGETATION HDA",
+      hero: "SURFACE IVY / WIND DATA",
+      flow: "surface mask -> vine curves -> leaf points -> wind attributes",
+      slots: ["Surface Mask", "Curve Mesh", "Leaf Points", "Wind Data"],
+    },
+    scope:
+      "输入建筑表面或测试墙面后生成贴附藤蔓、闭合藤条 mesh 和叶片实例点，并写出 UE 可读取的实例路径、分层输出和风摆属性。",
+    tech: ["Surface Growth Mask", "Closed Vine Mesh", "Leaf Instancing", "Wind Sway Attributes"],
+    impact:
+      "把墙面绿化从手摆资产整理成可调 HDA，用密度、叶片大小、低模预览和风摆参数控制覆盖效果，并为 UE 材质风和实例风预留数据。",
+    deliverables: [
+      "Houdini ivy generator clean test scene",
+      "Industrial ivy generator v2 HDA",
+      "Wind-sway and UE handoff breakdown note",
+    ],
+    article: {
+      intro:
+        "藤蔓工具的亮点在于它同时考虑了表面生长、UE 实例替换和风摆数据。它不是只输出一团植物，而是把藤条、叶片、调试 mask、连接线和风属性分开，让下游美术可以更清楚地接管。",
       sections: [
         {
           heading: "设计目标",
@@ -218,63 +218,6 @@ export const projects = [
             "后续建议补藤蔓 mask、连接线调试、叶片点和 UE 替换实例的四连图。",
             "如果能录一段帧预览或 UE 材质风效果，会比单张截图更能体现工具价值。",
             "文章中保留输出节点说明，方便面试官理解这个 HDA 如何交付给引擎。",
-          ],
-        },
-      ],
-    },
-  },
-  {
-    slug: "tree-growth-hda-pack",
-    title: "Baobab Growth HDA",
-    subtitle: "猴面包树生长、枝条展开与叶片延迟",
-    eyebrow: "Houdini HDA / Tree Growth / Timeline / UE Bake",
-    category: "Vegetation Toolset",
-    image: "/assets/houdini/portfolio/baobab-growth.png",
-    video: "/assets/houdini/videos/baobab-growth.mp4",
-    noteHref: "/assets/houdini/notes/billd_tree_baobab_growth_v3_rebuilt.md",
-    visual: {
-      label: "BAOBAB GROWTH HDA",
-      hero: "GROWTH TIMELINE / VISIBLE TREE",
-      flow: "trunk -> branches -> leaves -> bake-ready mesh",
-      slots: ["Growth", "Branches", "Leaves", "Bake"],
-    },
-    scope:
-      "围绕猴面包树的瓶状树干、主枝、次枝和程序化叶片建立生长展示版本，并保留静态 bake 的使用方式。",
-    tech: ["Growth Progress", "Timeline Driver", "Branch Delay", "Leaf Density Control"],
-    impact:
-      "让树木工具不只停留在最终模型，而是可以展示从树干、枝条到叶片的生成过程和面向 UE 的最终落地。",
-    deliverables: [
-      "Baobab growth HDA",
-      "Growth timeline preview branch",
-      "Static UE bake-ready tree output",
-      "Tree growth technical breakdown note",
-    ],
-    article: {
-      intro:
-        "这组树工具适合用来展示程序化植被的“过程感”：树干先出现，枝条随后展开，最后生成叶片。它同时保留静态输出，便于在 UE 中 bake 成可用资产。",
-      sections: [
-        {
-          heading: "设计目标",
-          items: [
-            "保留已有树形结构，同时加强上层枝条，让树冠轮廓更完整。",
-            "加入时间轴驱动，让生成过程可以作为作品集动效展示。",
-            "保持叶柄锚定在枝条表面，避免叶片像漂浮在树枝外侧。",
-          ],
-        },
-        {
-          heading: "技术流程",
-          items: [
-            "通过 Growth Progress 控制整体生长，必要时可切换为时间轴驱动。",
-            "用 Branch Growth Delay 和 Leaf Growth Delay 控制树干、枝条、叶片的出现顺序。",
-            "通过叶片密度和上限参数控制性能，并保留静态 bake 的工作流。",
-          ],
-        },
-        {
-          heading: "作品集展示方式",
-          items: [
-            "卡片使用树工具预览图，文章页说明三种 HDA 的定位。",
-            "后续建议补帧序列 GIF 或短视频，展示从空场景到完整树的变化。",
-            "可以把参数面板截图放在文章里，突出 TA 工具可控性。",
           ],
         },
       ],
@@ -441,63 +384,7 @@ export const projects = [
           items: [
             "卡片展示雪层预览图，文章强调从输入 mesh 到 UE 材质属性的链路。",
             "后续建议补充同一资产的原始状态、覆盖 debug、最终材质三张对比图。",
-            "可以与苔藓覆盖 HDA 并列成一组“资产老化/环境覆盖工具”。",
-          ],
-        },
-      ],
-    },
-  },
-  {
-    slug: "moss-coverage-hda",
-    title: "Moss Coverage HDA",
-    subtitle: "缝隙、阴影与潮湿区域的苔藓覆盖",
-    eyebrow: "Houdini 21 / UE5.6 / Moss Mask / Instancing",
-    category: "Surface Treatment",
-    image: "/assets/houdini/portfolio/moss-coverage.png",
-    video: "/assets/houdini/videos/moss-coverage.mp4",
-    noteHref: "/assets/houdini/notes/moss_coverage_h21_ue56_v1.md",
-    visual: {
-      label: "SURFACE COVERAGE",
-      hero: "MOSS MASK / FUZZ POINTS",
-      flow: "mesh input -> cavity mask -> moss carpet -> UE instances",
-      slots: ["Cavity", "Shade", "Fuzz", "Material"],
-    },
-    scope:
-      "基于缝隙、边缘、阴影、竖向面和低湿区域生成薄苔藓层，并可输出苔藓实例点与 UE 材质属性。",
-    tech: ["Cavity Mask", "Edge/Shade Boost", "Moss Carpet Geometry", "Instance Points"],
-    impact:
-      "让石头、墙面和道具可以快速获得局部老化与潮湿感，同时保留可调的 mask 与实例化入口。",
-    deliverables: [
-      "Houdini moss coverage test scene",
-      "Moss coverage HDA",
-      "Moss mask technical breakdown note",
-    ],
-    article: {
-      intro:
-        "苔藓 HDA 和积雪 HDA 是同一类思路：不是单纯改材质，而是让覆盖层具备几何厚度、mask 逻辑和 UE 可读属性。它适合展示资产老化和环境融合能力。",
-      sections: [
-        {
-          heading: "设计目标",
-          items: [
-            "从输入 mesh 自动分析适合生长苔藓的位置，例如缝隙、边缘和阴影区域。",
-            "保留源模型，同时输出苔藓层和可选实例点。",
-            "写入 moss_mask、moss_height、moss_roughness 等属性，支持 UE 材质继续调控。",
-          ],
-        },
-        {
-          heading: "技术流程",
-          items: [
-            "通过 cavity、edge、shade、vertical surface 和 moisture 逻辑组合苔藓 mask。",
-            "将苔藓作为薄 carpet geometry 输出，并可附加细节实例点。",
-            "使用 UE Moss Material 和 UE Moss Instance Mesh 参数对接引擎资源。",
-          ],
-        },
-        {
-          heading: "作品集展示方式",
-          items: [
-            "卡片展示苔藓预览图，文章突出 mask 生成逻辑和 UE 属性。",
-            "后续建议补一张 mask debug 图和一张材质最终效果图。",
-            "和 Snow Coverage HDA 一起展示时，可以体现同一工具框架如何适配不同覆盖物。",
+            "后续可以继续补充 UE 材质实例、不同输入资产和参数变化对照，形成更完整的季节化资产处理案例。",
           ],
         },
       ],
