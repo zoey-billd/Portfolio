@@ -37,19 +37,11 @@ export const projects = [
           ],
         },
         {
-          heading: "技术流程",
+          heading: "技术方案",
           items: [
             "使用 HeightField 生成基础高度层，再通过侵蚀节点得到 flow、debris、sediment 等可读层。",
             "通过坡度与遮罩规则区分草地、岩石、泥土等区域，减少手工刷层的成本。",
             "在 HDA 中写入 UE 材质路径和 Landscape paint layer，保证 Houdini 到 UE 的输出语义明确。",
-          ],
-        },
-        {
-          heading: "作品集展示方式",
-          items: [
-            "首页卡片展示地形预览图和技术栈摘要。",
-            "文章页可以继续补充高度层、侵蚀层、材质层和 UE 结果的对照图。",
-            "后续如果有录屏，可以展示参数变化如何影响地貌和材质分布。",
           ],
         },
       ],
@@ -93,19 +85,11 @@ export const projects = [
           ],
         },
         {
-          heading: "技术流程",
+          heading: "技术方案",
           items: [
             "用 seed、town radius、terrace count 和 house count 控制城镇规模与随机变化。",
             "按房屋、屋顶、城墙、塔楼、尖塔和植被模块组织生成网络。",
             "通过 OUT_UNREAL_COMBINED 和 OUT_MODULE_INSTANCE_POINTS 检查完整预览与 UE 属性。",
-          ],
-        },
-        {
-          heading: "作品集展示方式",
-          items: [
-            "首页卡片展示城镇整体预览图，详情页用录屏补充参数化生成过程。",
-            "文章中强调地形、建筑模块和 UE 实例点之间的层级关系。",
-            "后续可以补充 UE Houdini Engine 实例化结果和资源替换前后对照。",
           ],
         },
       ],
@@ -118,7 +102,25 @@ export const projects = [
     eyebrow: "Houdini HDA / Modular Containers / Layout Rules / Karma Preview",
     category: "Environment Generator",
     image: "/assets/houdini/portfolio/container-habitat.png",
+    video: "/assets/houdini/videos/container-habitat-modules.mp4",
     noteHref: "/assets/houdini/notes/container_habitat_generator.md",
+    galleryImages: [
+      {
+        src: "/assets/houdini/portfolio/container-habitat-front-karma.png",
+        caption: "Karma front render / module silhouette",
+        alt: "Container habitat front Karma render",
+      },
+      {
+        src: "/assets/houdini/portfolio/container-habitat-three-quarter-software.png",
+        caption: "Software viewport / structural module check",
+        alt: "Container habitat software viewport three-quarter render",
+      },
+      {
+        src: "/assets/houdini/portfolio/container-habitat-front-software.png",
+        caption: "Software viewport / front structure check",
+        alt: "Container habitat software viewport front render",
+      },
+    ],
     visual: {
       label: "CONTAINER HABITAT",
       hero: "STACKED MODULES / WALKWAYS",
@@ -126,42 +128,36 @@ export const projects = [
       slots: ["Containers", "Walkways", "Railings", "Props"],
     },
     scope:
-      "用 Houdini 生成可堆叠的箱体居住空间，组合集装箱模块、平台、楼梯、栏杆、门窗、支撑和少量道具，并保留参数化布局迭代入口。",
-    tech: ["Modular Container Layout", "Deterministic Seed", "Stairs & Railings", "Material Attributes"],
+      "用 Houdini 生成可堆叠的箱体居住空间，并把箱体主体、通行结构、支撑系统和场景装饰拆成可单独检查的结构分支。",
+    tech: ["Structure Split", "Support Adjustment", "Access Modules", "HDA Delivery"],
     impact:
-      "把参考图拆解为可控模块和空间规则，快速生成营地、临时聚落或科幻生活区的结构化 blockout，为后续 UE 替换资产与二次摆放提供基础。",
+      "把复杂空间从单一合并模型整理成清晰的模块交付：既能看整体构图，也能单独检查箱体、平台栏杆、支撑杆和地面装饰，方便后续材质替换、调试和 UE 落地。",
     deliverables: [
-      "Container habitat generator HDA",
-      "Houdini SOP layout scene",
-      "Karma/OpenGL preview renders",
-      "Technical art breakdown note",
+      "Container habitat generator HDA and HIP scene",
+      "Karma and software viewport renders",
+      "Module-split demo recording",
+      "Node structure and delivery breakdown note",
     ],
     article: {
       intro:
-        "这个项目不是随机摆一些箱子，而是把箱体空间拆成层级、错位、悬挑、平台、楼梯、栏杆和支撑关系。它适合作为环境 TA 的程序化 blockout 案例：先保证空间逻辑和可读轮廓，再继续增加材质和道具细节。",
+        "这个项目从早期“箱体空间生成”继续整理成可交付的 Houdini HDA：整体仍是模块化箱体居住空间，但重点已经推进到结构分支、调试出口、支撑修正和交付包规范。它适合作为环境 TA / 工具向 TA 的案例，展示如何把复杂场景从一个可看的结果拆成可检查、可维护、可继续落地的工具输出。",
       sections: [
         {
           heading: "设计目标",
           items: [
-            "在 Hero Camera 下形成有高低层次、前后关系和视觉中心的模块化箱体空间。",
-            "用规则控制楼层、行列、前后深度、错位强度和悬挑比例，而不是手工逐个摆放。",
-            "让平台、楼梯、栏杆和支撑解释空间如何被使用，避免箱体只停留在堆叠外形。",
+            "保留堆叠箱体、平台栏杆、支撑杆、地面装饰和灯光材质层次，让整体轮廓在正面与三分之四视角下都可读。",
+            "将场景按 container、access、support、dressing 等结构系统拆分，避免所有几何只作为一个不可维护的合并结果。",
+            "在合并前保留各分支检查出口，让模块可以单独显示、微调、清理和验证，再统一输出最终几何。",
           ],
         },
         {
-          heading: "技术流程",
+          heading: "技术方案",
           items: [
-            "先生成可复现的模块布局，再按 closed、open、drawer、glass 等类型添加局部组件。",
-            "在局部坐标系内制作门板、波纹板、把手、窗框、平台和栏杆，再跟随箱体整体变换。",
-            "为几何体写入 module、component、level、route、supported 和 material 等属性，方便后续筛选、调试和引擎材质替换。",
-          ],
-        },
-        {
-          heading: "作品集展示方式",
-          items: [
-            "首页卡片展示结构完整的三分之四视角，让观众先读到高低错落和交通路线。",
-            "详情页说明它当前是结构化 blockout / MVP，重点在生成骨架、空间逻辑和可扩展参数。",
-            "后续可以补参数变化、支撑检查、材质替换和 UE 场景落地对照图。",
+            "基础生成阶段由 HDA 内部逻辑创建箱体主体、平台、栏杆、梯子、支撑、地面装饰和相机灯光；SOP 网络只保留关键的分类、清理、调整和输出组织，减少维护时需要翻找的节点层级。",
+            "结构分类依赖 primitive 级别的组件属性，把箱体壳体、通行结构、支撑系统和装饰物拆入不同分支；每个分支在合并前都有独立调整入口，便于只检查平台栏杆、只看支撑杆或只清理小道具。",
+            "支撑系统单独缓存杆件上下边界，再做轻量的长度和朝中心偏移修正；这样能处理悬挑箱体下方支撑看起来脱节的问题，同时不把完整求解逻辑暴露成难维护的黑箱。",
+            "Dressing 清理使用精确标记而不是大范围空间删除，目标是移除影响画面和交付检查的小物件，同时保留桶、草、旗帜、告示牌等仍能强化尺度和生活感的装饰。",
+            "最终输出统一经过法线整理和结构合并，保留模块、组件、楼层、路线、支撑和材质相关属性，为后续材质替换、分层调试和 UE 侧二次处理预留接口。",
           ],
         },
       ],
@@ -205,19 +201,11 @@ export const projects = [
           ],
         },
         {
-          heading: "技术流程",
+          heading: "技术方案",
           items: [
             "使用表面 mask 控制可生长区域，再生成藤蔓连接曲线。",
             "藤蔓曲线闭合为 mesh，叶片则输出带 orient、up、pscale 和 unreal_instance 的实例点。",
             "通过 Wind Controls 控制整体摆动、叶片摆动倍率、枝梢摆动倍率、速度和扰动。",
-          ],
-        },
-        {
-          heading: "作品集展示方式",
-          items: [
-            "后续建议补藤蔓 mask、连接线调试、叶片点和 UE 替换实例的四连图。",
-            "如果能录一段帧预览或 UE 材质风效果，会比单张截图更能体现工具价值。",
-            "文章中保留输出节点说明，方便面试官理解这个 HDA 如何交付给引擎。",
           ],
         },
       ],
@@ -261,19 +249,11 @@ export const projects = [
           ],
         },
         {
-          heading: "技术流程",
+          heading: "技术方案",
           items: [
             "使用 Trunk Wander 控制主干整体蜿蜒。",
             "通过 Lobe Strength 和 Groove Depth 调整大块轮廓变化与纵向纹理感。",
             "增加 Visible Branch Radius，方便直接控制可见树枝粗细。",
-          ],
-        },
-        {
-          heading: "作品集展示方式",
-          items: [
-            "后续建议补一组参数对比图：圆滑树干、沟槽增强、枝条加粗。",
-            "文章页可以继续加入 HDA 参数面板截图，说明每个参数对应的视觉变化。",
-            "这个项目可以和树生长包互相链接，形成植被工具章节。",
           ],
         },
       ],
@@ -317,19 +297,11 @@ export const projects = [
           ],
         },
         {
-          heading: "技术流程",
+          heading: "技术方案",
           items: [
             "通过 trunk surface radius、roughness、sides 和 rings 控制树干 shell。",
             "按 branch count、upper branch height 和 branch spread 组织分枝层级。",
             "使用 leaf density、leaf count 和 attach padding 控制叶片数量与连接质量。",
-          ],
-        },
-        {
-          heading: "作品集展示方式",
-          items: [
-            "卡片展示完整树体，录屏展示从树干到枝条和叶片输出的流程。",
-            "详情页强调实体树干、枝条 mesh 和叶片实例点的分层检查。",
-            "后续可补充参数对比图，展示粗糙度、分枝密度和叶片数量的变化。",
           ],
         },
       ],
@@ -372,19 +344,11 @@ export const projects = [
           ],
         },
         {
-          heading: "技术流程",
+          heading: "技术方案",
           items: [
             "输入 mesh 后计算可覆盖区域，生成独立雪层并默认保留源模型。",
             "通过厚度、覆盖强度、坡度起点、边缘堆积和噪声参数控制视觉结果。",
             "使用 Output View 在覆盖调试、雪层单独输出和生成点之间切换检查。",
-          ],
-        },
-        {
-          heading: "作品集展示方式",
-          items: [
-            "卡片展示雪层预览图，文章强调从输入 mesh 到 UE 材质属性的链路。",
-            "后续建议补充同一资产的原始状态、覆盖 debug、最终材质三张对比图。",
-            "后续可以继续补充 UE 材质实例、不同输入资产和参数变化对照，形成更完整的季节化资产处理案例。",
           ],
         },
       ],
@@ -428,19 +392,11 @@ export const projects = [
           ],
         },
         {
-          heading: "技术流程",
+          heading: "技术方案",
           items: [
             "使用 impact mask 区分破坏核心、过渡区域和保留外壳。",
             "输出当前帧动画网格、rest pose、静态建筑代理和 VAT bake mesh。",
             "为 UE 预留 debris instance points，后续可以替换成 Nanite 小碎块或其他资产。",
-          ],
-        },
-        {
-          heading: "作品集展示方式",
-          items: [
-            "卡片展示破坏预览图，文章说明 HDA 输出层级和 VAT 接口。",
-            "后续建议补充 rest mesh、impact mask、VAT ROP、UE 材质结果四个关键画面。",
-            "可以作为 FX/环境破坏方向的独立项目，也可以接入更大的关卡场景。",
           ],
         },
       ],
