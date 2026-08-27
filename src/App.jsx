@@ -239,6 +239,8 @@ function ProjectMediaFrame({ project, index }) {
 }
 
 function ProjectMediaGallery({ project }) {
+  const galleryImages = project.galleryImages || [];
+
   return (
     <section className="article-media-gallery" aria-label={`${project.title} project media`}>
       <div className="article-media-heading">
@@ -278,6 +280,17 @@ function ProjectMediaGallery({ project }) {
             <figcaption>Process recording / parameter and output check</figcaption>
           </figure>
         ) : null}
+        {galleryImages.map((item) => (
+          <figure className="media-gallery-item" key={item.src}>
+            <div className="media-asset">
+              <img src={item.src} alt={item.alt || `${project.title} supporting screenshot`} />
+              <span className="media-watermark" aria-hidden="true">
+                ZOEY XIE / PCG + TOOLS TA
+              </span>
+            </div>
+            <figcaption>{item.caption}</figcaption>
+          </figure>
+        ))}
       </div>
     </section>
   );
