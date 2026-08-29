@@ -61,6 +61,11 @@ const projectMediaBlueprints = [
   },
 ];
 
+const featuredProjects = projects.filter((project) => project.homeSection !== "technical-study");
+const technicalStudyProjects = projects.filter(
+  (project) => project.homeSection === "technical-study",
+);
+
 function App() {
   const [projectSlug, setProjectSlug] = useState(getProjectSlugFromHash);
   const wasProjectOpen = useRef(Boolean(projectSlug));
@@ -241,6 +246,10 @@ function ProjectMediaFrame({ project, index }) {
 function ProjectMediaGallery({ project }) {
   const galleryImages = project.galleryImages || [];
 
+  if (!project.image && !project.video && galleryImages.length === 0) {
+    return null;
+  }
+
   return (
     <section className="article-media-gallery" aria-label={`${project.title} project media`}>
       <div className="article-media-heading">
@@ -293,6 +302,29 @@ function ProjectMediaGallery({ project }) {
         ))}
       </div>
     </section>
+  );
+}
+
+function TechnicalStudyCard({ project }) {
+  return (
+    <article className="technical-study-card">
+      <a
+        className="technical-study-link"
+        href={`#/projects/${project.slug}`}
+        onClick={rememberProjectScrollPosition}
+      >
+        <div className="technical-study-title">
+          <h3>{project.title}</h3>
+          <p>{project.subtitle}</p>
+        </div>
+        <ul className="tech-list technical-study-tech" aria-label={`${project.title} technical points`}>
+          {project.tech.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+        <ArrowUpRight size={17} />
+      </a>
+    </article>
   );
 }
 
@@ -423,8 +455,8 @@ function Projects() {
             </pre>
           </div>
         </div>
-        <div className="project-grid">
-          {projects.map((project, index) => (
+        <div className="project-grid featured-project-grid">
+          {featuredProjects.map((project, index) => (
             <article className={`project-card project-card-${index + 1}`} key={project.title}>
               <a
                 className="project-card-link"
@@ -454,6 +486,17 @@ function Projects() {
               </a>
             </article>
           ))}
+        </div>
+        <div className="technical-studies-block" aria-labelledby="technical-studies-title">
+          <div className="technical-studies-heading">
+            <p className="eyebrow">Technical Studies</p>
+            <h3 id="technical-studies-title">小型技术研究与 HDA 验证</h3>
+          </div>
+          <div className="technical-study-list">
+            {technicalStudyProjects.map((project) => (
+              <TechnicalStudyCard project={project} key={project.slug} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

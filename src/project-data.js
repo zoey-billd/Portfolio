@@ -1,5 +1,43 @@
 export const projects = [
   {
+    slug: "pcg-forest-framework",
+    title: "PCG Forest Framework",
+    subtitle: "UE5 PCG 森林框架",
+    eyebrow: "UE5 PCG / Forest Layout / Biome Rules / Work in Progress",
+    category: "Environment PCG",
+    status: "Framework Placeholder",
+    visual: {
+      label: "PCG FOREST",
+      hero: "BIOME FRAMEWORK / FOREST RULES",
+      flow: "landscape input -> biome masks -> scatter rules -> validation",
+      slots: ["PCG Graph", "Biome Mask", "Scatter Rules", "Validation"],
+    },
+    scope:
+      "先展示森林 PCG 的作品框架占位，后续补充完整截图、录屏和技术文档。",
+    tech: ["UE5 PCG", "Biome Rules", "Scatter Filters", "Landscape Masks"],
+    impact:
+      "作为主页第一优先级项目预留位置，后续集中展示森林生成、密度控制、生态分区和性能检查。",
+    deliverables: [
+      "PCG forest framework placeholder",
+      "Screenshots and process recording to be added",
+      "Technical breakdown to be added",
+    ],
+    article: {
+      intro:
+        "这个项目正在制作中，目前先作为 PCG 森林方向的框架占位。后续会补充最终截图、录屏、参数说明和技术方案。",
+      sections: [
+        {
+          heading: "规划方向",
+          items: [
+            "围绕 UE5 PCG 搭建森林生态分区、地形适配和多层散布规则。",
+            "重点展示可读的生成逻辑，而不是单纯堆叠植被资产数量。",
+            "后续补充截图、录屏和文档后，再替换为完整项目展示。",
+          ],
+        },
+      ],
+    },
+  },
+  {
     slug: "container-habitat-generator",
     title: "Container Habitat Generator",
     subtitle: "模块化箱体居住空间生成",
@@ -68,11 +106,60 @@ export const projects = [
     },
   },
   {
+    slug: "building-damage-vat",
+    title: "Building Damage VAT HDA",
+    subtitle: "可控建筑破坏、碎块属性与 UE VAT 准备",
+    eyebrow: "Houdini HDA / Impact Mask / VAT / UE Debris",
+    category: "FX Tool",
+    image: "/assets/houdini/portfolio/building-damage.png",
+    video: "/assets/houdini/videos/building-damage.mp4",
+    noteHref: "/assets/houdini/notes/procedural_damage_building_vat_v7.md",
+    visual: {
+      label: "FX HDA",
+      hero: "BUILDING DAMAGE / VAT READY",
+      flow: "impact mask -> fracture zones -> animated mesh -> UE VAT",
+      slots: ["Impact", "Pieces", "Pivots", "VAT"],
+    },
+    scope:
+      "以建筑立面局部坍塌为目标，生成可控破坏区域、稳定 piece id、VAT-ready 输出和 UE 碎块实例点。",
+    tech: ["Impact Mask", "Fracture Zone Attributes", "VAT-ready Mesh", "UE Debris Points"],
+    impact:
+      "将破坏效果包装成可复用 HDA，比单次模拟更容易进入 UE 验证和后续美术迭代。",
+    deliverables: [
+      "Houdini building damage prototype scene",
+      "Building damage VAT HDA",
+      "VAT-ready damage technical breakdown note",
+    ],
+    article: {
+      intro:
+        "这个项目选择了“可控程序化破坏 + VAT-ready 属性”的路线，而不是单纯追求一次性的爆炸模拟。它更适合作为 TA 工具案例：稳定、可调、能交给 UE 继续验证。",
+      sections: [
+        {
+          heading: "设计目标",
+          items: [
+            "围绕建筑立面局部坍塌建立可读的破坏区域，而不是无语义的大爆炸。",
+            "保留静态建筑代理、动态碎块、调试 mask、速度向量和裂缝曲线等分层输出。",
+            "为 Labs Vertex Animation Textures 流程准备稳定的 piece id、pivot 和动画属性。",
+          ],
+        },
+        {
+          heading: "技术方案",
+          items: [
+            "使用 impact mask 区分破坏核心、过渡区域和保留外壳。",
+            "输出当前帧动画网格、rest pose、静态建筑代理和 VAT bake mesh。",
+            "为 UE 预留 debris instance points，后续可以替换成 Nanite 小碎块或其他资产。",
+          ],
+        },
+      ],
+    },
+  },
+  {
     slug: "industrial-ivy-generator",
     title: "Industrial Ivy Generator",
     subtitle: "建筑表面藤蔓、叶片实例与风摆属性",
     eyebrow: "Houdini 21 / Surface Growth / Wind Attributes / UE Instances",
     category: "Vegetation Tool",
+    homeSection: "technical-study",
     image: "/assets/houdini/portfolio/industrial-ivy.png",
     video: "/assets/houdini/videos/industrial-ivy.mp4",
     noteHref: "/assets/houdini/notes/ivy_h21_industrial_generator_v2_wind.md",
@@ -116,6 +203,7 @@ export const projects = [
     },
   },
   {
+    homeSection: "technical-study",
     slug: "gnarly-trunk-hda",
     title: "Gnarly Trunk HDA",
     subtitle: "崎岖树干、纵向沟槽与可控轮廓",
@@ -164,6 +252,7 @@ export const projects = [
     },
   },
   {
+    homeSection: "technical-study",
     slug: "snow-coverage-hda",
     title: "Snow Coverage HDA",
     subtitle: "厚积雪覆盖、边缘堆积与 UE 材质属性",
@@ -205,54 +294,6 @@ export const projects = [
             "输入 mesh 后计算可覆盖区域，生成独立雪层并默认保留源模型。",
             "通过厚度、覆盖强度、坡度起点、边缘堆积和噪声参数控制视觉结果。",
             "使用 Output View 在覆盖调试、雪层单独输出和生成点之间切换检查。",
-          ],
-        },
-      ],
-    },
-  },
-  {
-    slug: "building-damage-vat",
-    title: "Building Damage VAT HDA",
-    subtitle: "可控建筑破坏、碎块属性与 UE VAT 准备",
-    eyebrow: "Houdini HDA / Impact Mask / VAT / UE Debris",
-    category: "FX Tool",
-    image: "/assets/houdini/portfolio/building-damage.png",
-    video: "/assets/houdini/videos/building-damage.mp4",
-    noteHref: "/assets/houdini/notes/procedural_damage_building_vat_v7.md",
-    visual: {
-      label: "FX HDA",
-      hero: "BUILDING DAMAGE / VAT READY",
-      flow: "impact mask -> fracture zones -> animated mesh -> UE VAT",
-      slots: ["Impact", "Pieces", "Pivots", "VAT"],
-    },
-    scope:
-      "以建筑立面局部坍塌为目标，生成可控破坏区域、稳定 piece id、VAT-ready 输出和 UE 碎块实例点。",
-    tech: ["Impact Mask", "Fracture Zone Attributes", "VAT-ready Mesh", "UE Debris Points"],
-    impact:
-      "将破坏效果包装成可复用 HDA，比单次模拟更容易进入 UE 验证和后续美术迭代。",
-    deliverables: [
-      "Houdini building damage prototype scene",
-      "Building damage VAT HDA",
-      "VAT-ready damage technical breakdown note",
-    ],
-    article: {
-      intro:
-        "这个项目选择了“可控程序化破坏 + VAT-ready 属性”的路线，而不是单纯追求一次性的爆炸模拟。它更适合作为 TA 工具案例：稳定、可调、能交给 UE 继续验证。",
-      sections: [
-        {
-          heading: "设计目标",
-          items: [
-            "围绕建筑立面局部坍塌建立可读的破坏区域，而不是无语义的大爆炸。",
-            "保留静态建筑代理、动态碎块、调试 mask、速度向量和裂缝曲线等分层输出。",
-            "为 Labs Vertex Animation Textures 流程准备稳定的 piece id、pivot 和动画属性。",
-          ],
-        },
-        {
-          heading: "技术方案",
-          items: [
-            "使用 impact mask 区分破坏核心、过渡区域和保留外壳。",
-            "输出当前帧动画网格、rest pose、静态建筑代理和 VAT bake mesh。",
-            "为 UE 预留 debris instance points，后续可以替换成 Nanite 小碎块或其他资产。",
           ],
         },
       ],

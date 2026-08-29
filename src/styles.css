@@ -1019,6 +1019,86 @@ video {
   -webkit-font-smoothing: none;
 }
 
+.technical-studies-block {
+  margin-top: 42px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(29, 27, 24, 0.14);
+}
+
+.technical-studies-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 18px;
+}
+
+.technical-studies-heading .eyebrow {
+  margin: 0;
+}
+
+.technical-studies-heading h3 {
+  margin: 0;
+  color: #403a32;
+  font-size: clamp(1.15rem, 1.45vw, 1.55rem);
+  font-weight: 760;
+}
+
+.technical-study-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.technical-study-card {
+  border: 1px solid rgba(29, 27, 24, 0.16);
+  border-radius: 3px;
+  background:
+    repeating-linear-gradient(0deg, rgba(29, 27, 24, 0.026) 0 1px, transparent 1px 18px),
+    rgba(255, 253, 248, 0.58);
+  box-shadow: 4px 5px 0 rgba(218, 210, 198, 0.34);
+}
+
+.technical-study-link {
+  position: relative;
+  display: grid;
+  min-height: 210px;
+  grid-template-rows: auto 1fr;
+  gap: 22px;
+  padding: 24px;
+  color: inherit;
+}
+
+.technical-study-link > svg {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  color: var(--rust);
+}
+
+.technical-study-title h3 {
+  max-width: calc(100% - 28px);
+  margin: 0;
+  font-family: var(--pixel-font);
+  font-size: clamp(1.26rem, 1.38vw, 1.75rem);
+  font-weight: 400;
+  font-variant-ligatures: none;
+  line-height: 1.13;
+  -webkit-font-smoothing: none;
+}
+
+.technical-study-title p {
+  margin: 12px 0 0;
+  color: var(--rust);
+  font-weight: 760;
+}
+
+.technical-study-tech {
+  align-self: end;
+  margin: 0;
+  padding-right: 24px;
+}
+
 .strengths-section {
   padding-top: 120px;
 }
@@ -1719,6 +1799,7 @@ video {
   }
 
   .project-grid,
+  .technical-study-list,
   .strength-grid {
     grid-template-columns: 1fr;
     gap: 18px;
@@ -1815,6 +1896,37 @@ video {
     padding-top: 18px;
     font-size: 0.9rem;
     line-height: 1.65;
+  }
+
+  .technical-studies-block {
+    margin-top: 30px;
+    padding-top: 24px;
+  }
+
+  .technical-studies-heading {
+    display: block;
+  }
+
+  .technical-studies-heading h3 {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    line-height: 1.45;
+  }
+
+  .technical-study-link {
+    min-height: 0;
+    gap: 18px;
+    padding: 20px;
+  }
+
+  .technical-study-title h3 {
+    font-size: 1.28rem;
+    overflow-wrap: anywhere;
+  }
+
+  .technical-study-title p {
+    font-size: 0.94rem;
+    line-height: 1.5;
   }
 
   .strengths-section {
