@@ -34,6 +34,22 @@ function rememberProjectScrollPosition() {
   sessionStorage.setItem(projectScrollKey, String(window.scrollY));
 }
 
+function handleSurfacePointerMove(event) {
+  const surface = event.currentTarget;
+  const bounds = surface.getBoundingClientRect();
+  const x = ((event.clientX - bounds.left) / bounds.width) * 100;
+  const y = ((event.clientY - bounds.top) / bounds.height) * 100;
+
+  surface.style.setProperty("--pointer-x", `${Math.max(0, Math.min(100, x))}%`);
+  surface.style.setProperty("--pointer-y", `${Math.max(0, Math.min(100, y))}%`);
+}
+
+function handleSurfacePointerLeave(event) {
+  const surface = event.currentTarget;
+  surface.style.removeProperty("--pointer-x");
+  surface.style.removeProperty("--pointer-y");
+}
+
 const projectMediaBlueprints = [
   {
     label: "UE5 PCG CASE",
@@ -102,6 +118,37 @@ function App() {
     });
   }, [projectSlug]);
 
+  useEffect(() => {
+    const revealables = document.querySelectorAll("[data-reveal]");
+
+    if (!revealables.length) {
+      return undefined;
+    }
+
+    if (typeof IntersectionObserver === "undefined") {
+      revealables.forEach((element) => element.classList.add("is-revealed"));
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          entry.target.classList.add("is-revealed");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -7%" },
+    );
+
+    revealables.forEach((element) => observer.observe(element));
+
+    return () => observer.disconnect();
+  }, [projectSlug]);
+
   const activeProject = useMemo(
     () => projects.find((project) => project.slug === projectSlug),
     [projectSlug],
@@ -129,17 +176,26 @@ function App() {
 }
 
 function CinnamorollEffects() {
-  const [cursor, setCursor] = useState({ x: 0, y: 0, visible: false });
+  const [cursor, setCursor] = useState({ x: 0, y: 0, visible: false, hovering: false });
   const [snowflakes, setSnowflakes] = useState([]);
   const snowflakeId = useRef(0);
 
   useEffect(() => {
     const handlePointerMove = (event) => {
-      setCursor({ x: event.clientX, y: event.clientY, visible: true });
+      const interactiveTarget = event.target.closest?.(
+        "a, button, .project-card, .technical-study-card, .strength-card",
+      );
+
+      setCursor({
+        x: event.clientX,
+        y: event.clientY,
+        visible: true,
+        hovering: Boolean(interactiveTarget),
+      });
     };
 
     const handlePointerLeave = () => {
-      setCursor((current) => ({ ...current, visible: false }));
+      setCursor((current) => ({ ...current, visible: false, hovering: false }));
     };
 
     const handlePointerDown = (event) => {
@@ -181,7 +237,9 @@ function CinnamorollEffects() {
     <>
       <div className="cinnamon-watermark" aria-hidden="true" />
       <div
-        className={`cinnamon-cursor${cursor.visible ? " is-visible" : ""}`}
+        className={`cinnamon-cursor${cursor.visible ? " is-visible" : ""}${
+          cursor.hovering ? " is-hovering" : ""
+        }`}
         style={{
           left: `${cursor.x}px`,
           top: `${cursor.y}px`,
@@ -307,7 +365,13 @@ function ProjectMediaGallery({ project }) {
 
 function TechnicalStudyCard({ project }) {
   return (
-    <article className="technical-study-card">
+    <article
+      className="technical-study-card"
+      data-reveal
+      style={{ "--reveal-delay": `${(projects.indexOf(project) % 4) * 70}ms` }}
+      onPointerMove={handleSurfacePointerMove}
+      onPointerLeave={handleSurfacePointerLeave}
+    >
       <a
         className="technical-study-link"
         href={`#/projects/${project.slug}`}
@@ -368,7 +432,12 @@ function Hero() {
           <source src="/assets/hero-loop.mp4" type="video/mp4" />
         </video>
       </div>
-      <aside className="hero-paper-scrap" aria-label="Portfolio links">
+      <aside
+        className="hero-paper-scrap"
+        aria-label="Portfolio links"
+        onPointerMove={handleSurfacePointerMove}
+        onPointerLeave={handleSurfacePointerLeave}
+      >
         <p className="scrap-kicker">Portfolio Links</p>
         <div className="scrap-links">
           <a className="scrap-link" href={profile.bilibili} target="_blank" rel="noreferrer">
@@ -420,7 +489,7 @@ function Hero() {
 
 function Intro() {
   return (
-    <section className="section intro-section" id="intro">
+    <section className="section intro-section" id="intro" data-reveal>
       <div className="section-inner intro-grid">
         <div className="intro-copy">
           <p className="eyebrow">About</p>
@@ -443,7 +512,7 @@ function Intro() {
 
 function Projects() {
   return (
-    <section className="section projects-section" id="projects">
+    <section className="section projects-section" id="projects" data-reveal>
       <div className="section-inner">
         <div className="section-heading">
           <p className="eyebrow">Selected Projects</p>
@@ -457,7 +526,14 @@ function Projects() {
         </div>
         <div className="project-grid featured-project-grid">
           {featuredProjects.map((project, index) => (
-            <article className={`project-card project-card-${index + 1}`} key={project.title}>
+            <article
+              className={`project-card project-card-${index + 1}`}
+              key={project.title}
+              data-reveal
+              style={{ "--reveal-delay": `${index * 70}ms` }}
+              onPointerMove={handleSurfacePointerMove}
+              onPointerLeave={handleSurfacePointerLeave}
+            >
               <a
                 className="project-card-link"
                 href={`#/projects/${project.slug}`}
@@ -574,7 +650,7 @@ function ProjectArticlePage({ project }) {
 
 function Strengths() {
   return (
-    <section className="section strengths-section" id="strengths">
+    <section className="section strengths-section" id="strengths" data-reveal>
       <div className="section-inner">
         <div className="section-heading compact-heading">
           <p className="eyebrow">Strengths</p>
@@ -584,7 +660,14 @@ function Strengths() {
           {strengths.map((item, index) => {
             const Icon = iconMap[index] || Cpu;
             return (
-              <article className="strength-card" key={item.title}>
+              <article
+                className="strength-card"
+                key={item.title}
+                data-reveal
+                style={{ "--reveal-delay": `${index * 70}ms` }}
+                onPointerMove={handleSurfacePointerMove}
+                onPointerLeave={handleSurfacePointerLeave}
+              >
                 <Icon size={26} />
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
@@ -604,7 +687,7 @@ function Strengths() {
 
 function Contact() {
   return (
-    <section className="contact-section" id="contact">
+    <section className="contact-section" id="contact" data-reveal>
       <div className="contact-inner">
         <p className="eyebrow">Contact</p>
         <h2>Looking for a PCG / Tools TA role.</h2>
