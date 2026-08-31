@@ -39,9 +39,9 @@ export const projects = [
   },
   {
     slug: "container-habitat-generator",
-    title: "Container Habitat Generator",
-    subtitle: "模块化箱体居住空间生成",
-    eyebrow: "Houdini HDA / Modular Containers / Layout Rules / Karma Preview",
+    title: "Modular Cover & Traversal Generator",
+    subtitle: "模块化掩体与攀爬结构生成",
+    eyebrow: "Houdini HDA / Cover Layout / Traversal Routes / Modular Structure",
     category: "Environment Generator",
     image: "/assets/houdini/portfolio/container-habitat.png",
     video: "/assets/houdini/videos/container-habitat-modules.mp4",
@@ -49,8 +49,8 @@ export const projects = [
     galleryImages: [
       {
         src: "/assets/houdini/portfolio/container-habitat-front-karma.png",
-        caption: "Karma front render / module silhouette",
-        alt: "Container habitat front Karma render",
+        caption: "Front render / cover and traversal silhouette",
+        alt: "Modular cover and traversal structure front render",
       },
       {
         src: "/assets/houdini/portfolio/container-habitat-three-quarter-software.png",
@@ -64,42 +64,42 @@ export const projects = [
       },
     ],
     visual: {
-      label: "CONTAINER HABITAT",
-      hero: "STACKED MODULES / WALKWAYS",
-      flow: "layout rules -> modules -> platforms -> stairs -> supports",
-      slots: ["Containers", "Walkways", "Railings", "Props"],
+      label: "COVER / TRAVERSAL",
+      hero: "STACKED COVER / CLIMBABLE ROUTES",
+      flow: "cover modules -> height tiers -> traversal access -> support pass",
+      slots: ["Cover Modules", "Access Routes", "Height Tiers", "Supports"],
     },
     scope:
-      "用 Houdini 生成可堆叠的箱体居住空间，并把箱体主体、通行结构、支撑系统和场景装饰拆成可单独检查的结构分支。",
-    tech: ["Structure Split", "Support Adjustment", "Access Modules", "HDA Delivery"],
+      "以模块化箱体为基础生成可进入、可攀爬、可作掩护的垂直场景结构，并将平台、梯子、栏杆和支撑组织成可检查的空间系统。",
+    tech: ["Cover Layout", "Traversal Routes", "Height Tiers", "HDA Delivery"],
     impact:
-      "把复杂空间从单一合并模型整理成清晰的模块交付：既能看整体构图，也能单独检查箱体、平台栏杆、支撑杆和地面装饰，方便后续材质替换、调试和 UE 落地。",
+      "把箱体堆叠从单纯造型转成具有遮挡关系和垂直通行逻辑的环境节点，同时保留模块化检查和后续 UE 落地空间。",
     deliverables: [
-      "Container habitat generator HDA and HIP scene",
-      "Karma and software viewport renders",
+      "Modular cover and traversal HDA / HIP scene",
+      "Hero and front structure renders",
       "Module-split demo recording",
       "Node structure and delivery breakdown note",
     ],
     article: {
       intro:
-        "这个项目从早期“箱体空间生成”继续整理成可交付的 Houdini HDA：整体仍是模块化箱体居住空间，但重点已经推进到结构分支、调试出口、支撑修正和交付包规范。它适合作为环境 TA / 工具向 TA 的案例，展示如何把复杂场景从一个可看的结果拆成可检查、可维护、可继续落地的工具输出。",
+        "这个项目把标准箱体重新包装成可进入、可攀爬、可提供遮挡的垂直环境结构。重点不是堆出一个复杂外形，而是让不同高度的平台、梯子、栏杆和支撑之间形成可读的空间关系，并通过 Houdini HDA 保留后续迭代的入口。",
       sections: [
         {
           heading: "设计目标",
           items: [
-            "保留堆叠箱体、平台栏杆、支撑杆、地面装饰和灯光材质层次，让整体轮廓在正面与三分之四视角下都可读。",
-            "将场景按 container、access、support、dressing 等结构系统拆分，避免所有几何只作为一个不可维护的合并结果。",
-            "在合并前保留各分支检查出口，让模块可以单独显示、微调、清理和验证，再统一输出最终几何。",
+            "让箱体错位、悬挑和层级变化同时服务于遮挡、观察和攀爬路线，避免结构只停留在装饰性的堆叠。",
+            "让平台、梯子、栏杆和支撑形成连续的垂直通行线索，使镜头能快速读出可进入区域和高度变化。",
+            "保留箱体、通行、支撑和装饰的独立检查入口，方便在不同构图和玩法需求之间继续迭代。",
           ],
         },
         {
           heading: "技术方案",
           items: [
-            "基础生成阶段由 HDA 内部逻辑创建箱体主体、平台、栏杆、梯子、支撑、地面装饰和相机灯光；SOP 网络只保留关键的分类、清理、调整和输出组织，减少维护时需要翻找的节点层级。",
-            "结构分类依赖 primitive 级别的组件属性，把箱体壳体、通行结构、支撑系统和装饰物拆入不同分支；每个分支在合并前都有独立调整入口，便于只检查平台栏杆、只看支撑杆或只清理小道具。",
-            "支撑系统单独缓存杆件上下边界，再做轻量的长度和朝中心偏移修正；这样能处理悬挑箱体下方支撑看起来脱节的问题，同时不把完整求解逻辑暴露成难维护的黑箱。",
-            "Dressing 清理使用精确标记而不是大范围空间删除，目标是移除影响画面和交付检查的小物件，同时保留桶、草、旗帜、告示牌等仍能强化尺度和生活感的装饰。",
-            "最终输出统一经过法线整理和结构合并，保留模块、组件、楼层、路线、支撑和材质相关属性，为后续材质替换、分层调试和 UE 侧二次处理预留接口。",
+            "基础生成阶段围绕箱体层级和可达区域组织平台、梯子、栏杆与支撑；HDA 内部保留参数入口，外部 SOP 主要负责分类、检查、清理和交付组织。",
+            "结构分类依赖组件语义把箱体壳体、遮挡面、通行结构和支撑系统分开，让画面检查可以从整体轮廓切换到路线、节点或局部受力关系。",
+            "通行结构会根据相邻高度和空间间距保留可读的连接线索，再结合局部错位控制路线的节奏；具体布局不固定为单一模板，便于适配不同场景构图。",
+            "悬挑部分单独进入支撑检查，重点观察支撑是否落地、是否与箱体边界呼应，以及平台下方是否出现穿插或悬空的视觉断点。",
+            "最终输出保留模块、楼层、路线、支撑和材质相关属性，为后续材质替换、分层调试与 UE 侧二次处理预留接口，但不把完整生成配方公开为照抄式步骤。",
           ],
         },
       ],
