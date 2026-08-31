@@ -8,7 +8,7 @@ export const profile = {
   resumePdf: "https://github.com/zoey-billd/Portfolio/blob/main/Resume_Zoey_UE_TA.pdf",
   education: "广东外语外贸大学 · 计算机科学与技术 / 网络空间安全",
   summary:
-    "计算机与网络安全背景转向技术美术，主攻 UE5.6 PCG 程序化环境、Houdini HDA 工具、Python 编辑器管线、材质与场景落地。擅长把美术目标拆成可验证的规则、Mask、Spline、点云过滤、资产筛选和参数面板，并用文档、版本管理和自动化脚本支撑迭代。",
+    "计算机与网络空间安全背景转向技术美术，主攻 UE5.6 PCG 程序化环境、Houdini HDA 工具、Python 编辑器管线与场景落地。擅长把视觉需求整理为输入契约、Mask、Spline、点云过滤、资产筛选和参数面板，并用调试出口、文档、版本管理和自动化脚本支撑可复用迭代。",
 };
 
 export const stats = [
@@ -88,19 +88,19 @@ export const projects = [
 export const strengths = [
   {
     title: "规则到画面",
-    text: "能把地形、Spline、Mask、点云过滤和资产规则拆成可验证的生成流程。",
+    text: "把地形、Spline、Mask、点云过滤和资产规则整理成可观察、可回滚的生成链路。",
   },
   {
     title: "工具产品意识",
-    text: "关注参数暴露、默认值、动作白名单、版本回滚和面向美术的可读流程。",
+    text: "关注参数边界、默认值、异常提示、版本回滚和面向美术的低学习成本流程。",
   },
   {
     title: "DCC 到 UE 链路",
-    text: "理解 Houdini HDA、Python 导入、UE Editor Utility、PCG Graph 与资产落地的连接点。",
+    text: "关注 Houdini HDA、Python 导入、UE Editor Utility、PCG Graph 与资产落地之间的数据交接。",
   },
   {
     title: "技术文档与交付",
-    text: "有安全与咨询背景，习惯保留证据、整理节点说明、沉淀问题复盘和交付记录。",
+    text: "习惯记录节点职责、验证证据、限制条件和问题复盘，让工具交付不依赖口头说明。",
   },
 ];
 

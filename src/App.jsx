@@ -454,12 +454,12 @@ function Hero() {
       <div className="hero-inner">
         <p className="eyebrow">Technical Art Portfolio 2026</p>
         <h1>
-          Procedural worlds,
+          Procedural systems,
           <br />
-          readable tools.
+          readable outputs.
         </h1>
         <p className="hero-copy">
-          {profile.name} {profile.englishName} - 聚焦 UE5 PCG、Houdini HDA 与编辑器工具的技术美术作品集。
+          {profile.name} {profile.englishName} - 面向 UE5 PCG、Houdini HDA 与编辑器工具的可复用技术美术实践。
         </p>
         <div className="hero-actions">
           <a className="primary-action" href="#projects">
@@ -493,7 +493,7 @@ function Intro() {
       <div className="section-inner intro-grid">
         <div className="intro-copy">
           <p className="eyebrow">About</p>
-          <h2>把美术目标拆成可以验证、迭代、复用的工具流程。</h2>
+          <h2>把视觉需求拆成可验证、可维护、可复用的工程流程。</h2>
           <p>{profile.summary}</p>
           <div className="contact-strip">
             <a href={`mailto:${profile.email}`}>{profile.email}</a>
@@ -517,7 +517,7 @@ function Projects() {
         <div className="section-heading">
           <p className="eyebrow">Selected Projects</p>
           <div>
-            <h2>Houdini 项目将按“技术栈摘要 - 工具流程 - 交付价值”展开。</h2>
+            <h2>从输入契约、生成规则到交付输出，记录工具如何进入实际制作流程。</h2>
             <pre className="section-ascii" aria-hidden="true">
 {`[input]--[mask]--[hda controls]--[ue handoff]
     source     rules          parameters       readable output`}
@@ -566,7 +566,7 @@ function Projects() {
         <div className="technical-studies-block" aria-labelledby="technical-studies-title">
           <div className="technical-studies-heading">
             <p className="eyebrow">Technical Studies</p>
-            <h3 id="technical-studies-title">小型技术研究与 HDA 验证</h3>
+          <h3 id="technical-studies-title">技术研究与可复用 HDA 验证</h3>
           </div>
           <div className="technical-study-list">
             {technicalStudyProjects.map((project) => (
@@ -690,9 +690,9 @@ function Contact() {
     <section className="contact-section" id="contact" data-reveal>
       <div className="contact-inner">
         <p className="eyebrow">Contact</p>
-        <h2>Looking for a PCG / Tools TA role.</h2>
+        <h2>Building reusable PCG and tools workflows.</h2>
         <p>
-          希望把程序化环境、Houdini 工具和 UE 编辑器管线继续打磨成能被美术团队稳定使用的生产工具。
+          希望把程序化环境、Houdini 工具和 UE 编辑器管线继续整理成有明确输入、可控参数、可检查输出的生产工具。
         </p>
         <div className="contact-actions">
           <a className="primary-action" href={`mailto:${profile.email}`}>

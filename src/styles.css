@@ -2329,3 +2329,331 @@ video {
     transform: none;
   }
 }
+
+/* Give large screens a calmer reading scale: more margin, smaller modules,
+   and enough space around each technical decision. */
+@media (min-width: 1321px) {
+  .nav-bar,
+  .hero-inner,
+  .section-inner,
+  .contact-inner,
+  .article-wrap {
+    width: min(1480px, calc(100vw - 176px));
+  }
+
+  .nav-bar {
+    top: 18px;
+    gap: 18px;
+    padding: 8px;
+  }
+
+  .brand-mark {
+    width: 74px;
+    height: 40px;
+  }
+
+  .brand-cinnamon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .nav-links {
+    gap: 24px;
+    font-size: 0.7rem;
+  }
+
+  .nav-contact {
+    min-height: 40px;
+    padding: 0 14px;
+    font-size: 0.7rem;
+  }
+
+  .hero-inner {
+    padding: 124px 48px;
+  }
+
+  .hero-paper-scrap {
+    right: max(40px, calc((100vw - 1480px) / 2));
+    width: min(360px, 29vw);
+    height: 196px;
+    padding: 20px 28px;
+  }
+
+  .hero h1 {
+    max-width: 820px;
+    font-size: 4.8rem;
+  }
+
+  .hero-copy {
+    width: min(660px, 56vw);
+    margin-top: 22px;
+    font-size: 0.96rem;
+  }
+
+  .hero-actions {
+    margin-top: 30px;
+  }
+
+  .section {
+    padding: 86px 0;
+  }
+
+  .intro-copy h2,
+  .section-heading h2 {
+    font-size: 3.45rem;
+  }
+
+  .intro-copy > p:not(.eyebrow) {
+    width: min(980px, 100%);
+    margin-top: 22px;
+    font-size: 0.96rem;
+  }
+
+  .section-heading {
+    gap: 42px;
+    margin-bottom: 38px;
+  }
+
+  .section-heading h2 {
+    max-width: 960px;
+    font-size: 2.9rem;
+  }
+
+  .section-ascii {
+    margin-top: 22px;
+    font-size: 0.74rem;
+  }
+
+  .project-grid {
+    gap: 18px;
+  }
+
+  .project-card,
+  .project-card-link {
+    min-height: 480px;
+  }
+
+  .project-card-link {
+    grid-template-rows: 204px 1fr;
+  }
+
+  .project-media-wrap::before {
+    border-width: 12px;
+  }
+
+  .project-media-wrap::after {
+    inset: 34px;
+  }
+
+  .media-frame-header {
+    padding: 22px 24px 0;
+    font-size: 0.68rem;
+  }
+
+  .media-stage {
+    gap: 12px;
+    padding: 52px 42px;
+  }
+
+  .media-stage span {
+    font-size: 2.35rem;
+  }
+
+  .media-stage small {
+    font-size: 0.76rem;
+  }
+
+  .media-strip {
+    padding: 0 24px 22px;
+    font-size: 0.68rem;
+  }
+
+  .project-preview-image {
+    width: calc(100% - 44px);
+    margin: 12px 22px 6px;
+  }
+
+  .project-content {
+    padding: 22px;
+  }
+
+  .project-eyebrow {
+    margin-bottom: 16px;
+    font-size: 0.74rem;
+  }
+
+  .project-content h3 {
+    font-size: 1.65rem;
+  }
+
+  .project-content h4 {
+    margin-top: 10px;
+    font-size: 0.92rem;
+  }
+
+  .project-content p {
+    margin-top: 18px;
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  .tech-list {
+    gap: 7px;
+    margin-top: 20px;
+  }
+
+  .tech-list li {
+    min-height: 30px;
+    padding: 0 10px;
+    font-size: 0.78rem;
+  }
+
+  .project-impact {
+    gap: 8px;
+    margin-top: 22px;
+    padding-top: 18px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .read-project-link {
+    margin-top: 18px;
+    font-size: 0.7rem;
+  }
+
+  .technical-studies-block {
+    margin-top: 34px;
+    padding-top: 26px;
+  }
+
+  .technical-studies-heading h3 {
+    font-size: 1.25rem;
+  }
+
+  .technical-study-list {
+    gap: 12px;
+  }
+
+  .technical-study-link {
+    min-height: 164px;
+    gap: 16px;
+    padding: 20px;
+  }
+
+  .technical-study-title h3 {
+    font-size: 1.35rem;
+  }
+
+  .technical-study-title p {
+    margin-top: 9px;
+    font-size: 0.92rem;
+  }
+
+  .strengths-section {
+    padding-top: 88px;
+  }
+
+  .strength-grid {
+    gap: 16px;
+  }
+
+  .strength-card {
+    min-height: 196px;
+    padding: 22px;
+  }
+
+  .strength-card h3 {
+    margin: 40px 0 12px;
+    font-size: 1.5rem;
+  }
+
+  .strength-card p {
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .skill-ribbon {
+    margin-top: 26px;
+  }
+
+  .contact-section {
+    min-height: 80vh;
+    padding: 90px 0;
+  }
+
+  .contact-inner {
+    padding: 74px 40px 54px;
+  }
+
+  .contact-inner h2 {
+    font-size: 4.1rem;
+  }
+
+  .contact-inner p:not(.eyebrow) {
+    max-width: 700px;
+    margin-top: 22px;
+    font-size: 1rem;
+  }
+
+  .closing-line {
+    margin-top: 58px;
+    font-size: 0.9rem;
+  }
+
+  .article-shell {
+    padding: 122px 0 88px;
+  }
+
+  .article-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.72fr);
+    gap: 30px;
+    margin-top: 28px;
+    padding-bottom: 44px;
+  }
+
+  .article-title-block {
+    min-height: 350px;
+  }
+
+  .article-title-block h1 {
+    font-size: 4.35rem;
+  }
+
+  .article-title-block h2 {
+    margin-top: 16px;
+    font-size: 1.15rem;
+  }
+
+  .article-title-block p:not(.eyebrow) {
+    max-width: 700px;
+    margin-top: 20px;
+    font-size: 0.96rem;
+    line-height: 1.7;
+  }
+
+  .article-hero .project-media-wrap {
+    min-height: 350px;
+  }
+
+  .article-media-gallery {
+    margin-top: 30px;
+    padding: 26px;
+  }
+
+  .article-media-heading h3 {
+    font-size: 1.15rem;
+  }
+
+  .article-body {
+    gap: 30px;
+    margin-top: 42px;
+  }
+
+  .article-summary-panel {
+    padding: 22px;
+  }
+
+  .article-section {
+    padding: 26px;
+  }
+}
