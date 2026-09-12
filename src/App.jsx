@@ -269,17 +269,37 @@ function CinnamorollEffects() {
 
 function ProjectMediaFrame({ project, index }) {
   const media = project.visual || projectMediaBlueprints[index % projectMediaBlueprints.length];
+  const isArtwork = project.mediaType === "artwork";
+  const artworkImages = isArtwork
+    ? [
+        { src: project.image, alt: `${project.title} primary artwork` },
+        ...(project.galleryImages || []),
+      ].filter((item) => item?.src)
+    : [];
 
   return (
     <div
-      className={`project-media-wrap${project.image ? " has-preview-image" : ""}`}
+      className={`project-media-wrap${project.image ? " has-preview-image" : ""}${
+        isArtwork ? " artwork-media-frame" : ""
+      }`}
       aria-label={`${project.title} media layout`}
     >
       <div className="media-frame-header">
         <span>{media.label}</span>
         <span>{String(index + 1).padStart(2, "0")}</span>
       </div>
-      {project.image ? (
+      {isArtwork ? (
+        <div className="artwork-frame-grid">
+          {artworkImages.map((item, artworkIndex) => (
+            <div
+              className={`artwork-frame-tile artwork-frame-tile-${artworkIndex + 1}`}
+              key={item.src}
+            >
+              <img src={item.src} alt={item.alt || `${project.title} artwork`} />
+            </div>
+          ))}
+        </div>
+      ) : project.image ? (
         <>
           <img className="project-preview-image" src={project.image} alt={`${project.title} preview`} />
           <span className="media-watermark project-preview-watermark" aria-hidden="true">
@@ -292,6 +312,11 @@ function ProjectMediaFrame({ project, index }) {
           <small>{media.flow}</small>
         </div>
       )}
+      {isArtwork ? (
+        <span className="media-watermark artwork-frame-watermark" aria-hidden="true">
+          ZOEY XIE / PCG + TOOLS TA
+        </span>
+      ) : null}
       <div className="media-strip">
         {media.slots.map((slot) => (
           <span key={slot}>{slot}</span>
@@ -303,10 +328,8 @@ function ProjectMediaFrame({ project, index }) {
 
 function ProjectMediaGallery({ project }) {
   const galleryImages = project.galleryImages || [];
-  const artworkClass = project.mediaType === "artwork" ? " artwork-media-item" : "";
-  const includePrimaryImage = project.mediaType !== "artwork";
 
-  if ((!project.image || !includePrimaryImage) && !project.video && galleryImages.length === 0) {
+  if (!project.image && !project.video && galleryImages.length === 0) {
     return null;
   }
 
@@ -325,8 +348,8 @@ function ProjectMediaGallery({ project }) {
         ) : null}
       </div>
       <div className="media-gallery-grid">
-        {project.image && includePrimaryImage ? (
-          <figure className={`media-gallery-item${artworkClass}`}>
+        {project.image ? (
+          <figure className="media-gallery-item">
             <div className="media-asset">
               <img src={project.image} alt={`${project.title} project screenshot`} />
               <span className="media-watermark" aria-hidden="true">
@@ -337,7 +360,7 @@ function ProjectMediaGallery({ project }) {
           </figure>
         ) : null}
         {project.video ? (
-          <figure className={`media-gallery-item${artworkClass}`}>
+          <figure className="media-gallery-item">
             <div className="media-asset">
               <video controls preload="metadata" poster={project.image}>
                 <source src={project.video} type="video/mp4" />
@@ -350,7 +373,7 @@ function ProjectMediaGallery({ project }) {
           </figure>
         ) : null}
         {galleryImages.map((item) => (
-          <figure className={`media-gallery-item${artworkClass}`} key={item.src}>
+          <figure className="media-gallery-item" key={item.src}>
             <div className="media-asset">
               <img src={item.src} alt={item.alt || `${project.title} supporting screenshot`} />
               <span className="media-watermark" aria-hidden="true">
@@ -600,7 +623,7 @@ function ProjectArticlePage({ project }) {
           <ProjectMediaFrame project={project} index={projects.indexOf(project)} />
         </header>
 
-        <ProjectMediaGallery project={project} />
+        {project.mediaType === "artwork" ? null : <ProjectMediaGallery project={project} />}
 
         <div className="article-body">
           <aside className="article-summary-panel">

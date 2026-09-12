@@ -2,8 +2,8 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import "@fontsource/dotgothic16/400.css";
 import App from "./App.jsx";
-import "./artwork.css";
 import "./styles.css";
+import "./artwork.css";
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
