@@ -289,4 +289,62 @@ export const projects = [
       ],
     },
   },
+  {
+    homeSection: "technical-study",
+    slug: "personal-visual-studies",
+    title: "Personal Art & Visual Studies",
+    subtitle: "数字绘画、色彩与形体表现练习",
+    eyebrow: "Digital Painting / Color / Shape / Material",
+    category: "Personal Art",
+    image: "/assets/art/cat-color-study.jpg",
+    mediaType: "artwork",
+    visual: {
+      label: "PERSONAL ART",
+      hero: "DIGITAL PAINTING / VISUAL STUDIES",
+      flow: "color grouping -> shape language -> brush texture -> light",
+      slots: ["Color", "Shape", "Texture", "Light"],
+    },
+    galleryImages: [
+      {
+        src: "/assets/art/cat-gray-study.jpg",
+        caption: "Cat study / brush texture, value grouping and character expression",
+        alt: "Stylized gray cat digital painting",
+      },
+      {
+        src: "/assets/art/xiangxiang-portrait.jpg",
+        caption: "Portrait study / color temperature, facial structure and lighting",
+        alt: "Orange-haired portrait digital painting",
+      },
+    ],
+    scope:
+      "以个人数字绘画练习补充展示色彩、形体、笔触、材质和视觉表达能力，为技术美术工作提供视觉判断基础。",
+    tech: ["Color & Value", "Shape Language", "Brush Texture", "Character Rendering"],
+    impact:
+      "证明我不仅关注生成规则和工具链，也能从画面构图、色彩关系和材质表现角度判断最终视觉结果。",
+    deliverables: [
+      "Three digital painting studies",
+      "Color, texture and character observation practice",
+    ],
+    article: {
+      intro:
+        "这组作品不是 PCG 项目，而是用于补充展示个人美术基础。重点记录色彩组织、形体概括、笔触控制和人物表达等能力。",
+      sections: [
+        {
+          heading: "作品定位",
+          items: [
+            "彩色猫作品强调高对比配色、笔触节奏和形状概括，作为本组作品的主视觉。",
+            "灰猫作品补充展示明度分组、边缘控制和较克制的材质表现。",
+            "人物作品展示色彩温度、面部结构和光影塑造，拓展个人视觉表达范围。",
+          ],
+        },
+        {
+          heading: "与技术美术的关系",
+          items: [
+            "绘画训练帮助我在程序化环境中判断构图、色彩层级、视觉焦点和材质区分。",
+            "这些作品不替代 PCG、Houdini 或 UE 的工程证据，而是作为最终画面判断能力的补充。",
+          ],
+        },
+      ],
+    },
+  },
 ];

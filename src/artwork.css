@@ -1,0 +1,6 @@
+.media-gallery-item.artwork-media-item img {
+  aspect-ratio: auto;
+  max-height: min(78vh, 820px);
+  object-fit: contain;
+  background: #eeebe4;
+}

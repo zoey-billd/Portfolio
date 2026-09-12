@@ -303,8 +303,10 @@ function ProjectMediaFrame({ project, index }) {
 
 function ProjectMediaGallery({ project }) {
   const galleryImages = project.galleryImages || [];
+  const artworkClass = project.mediaType === "artwork" ? " artwork-media-item" : "";
+  const includePrimaryImage = project.mediaType !== "artwork";
 
-  if (!project.image && !project.video && galleryImages.length === 0) {
+  if ((!project.image || !includePrimaryImage) && !project.video && galleryImages.length === 0) {
     return null;
   }
 
@@ -323,8 +325,8 @@ function ProjectMediaGallery({ project }) {
         ) : null}
       </div>
       <div className="media-gallery-grid">
-        {project.image ? (
-          <figure className="media-gallery-item">
+        {project.image && includePrimaryImage ? (
+          <figure className={`media-gallery-item${artworkClass}`}>
             <div className="media-asset">
               <img src={project.image} alt={`${project.title} project screenshot`} />
               <span className="media-watermark" aria-hidden="true">
@@ -335,7 +337,7 @@ function ProjectMediaGallery({ project }) {
           </figure>
         ) : null}
         {project.video ? (
-          <figure className="media-gallery-item">
+          <figure className={`media-gallery-item${artworkClass}`}>
             <div className="media-asset">
               <video controls preload="metadata" poster={project.image}>
                 <source src={project.video} type="video/mp4" />
@@ -348,7 +350,7 @@ function ProjectMediaGallery({ project }) {
           </figure>
         ) : null}
         {galleryImages.map((item) => (
-          <figure className="media-gallery-item" key={item.src}>
+          <figure className={`media-gallery-item${artworkClass}`} key={item.src}>
             <div className="media-asset">
               <img src={item.src} alt={item.alt || `${project.title} supporting screenshot`} />
               <span className="media-watermark" aria-hidden="true">
