@@ -2,6 +2,15 @@
   min-height: 0;
 }
 
+.article-hero.artwork-article-hero {
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.58fr);
+}
+
+.article-hero.artwork-article-hero .artwork-media-frame {
+  width: min(100%, 560px);
+  justify-self: end;
+}
+
 .artwork-frame-grid {
   position: relative;
   z-index: 1;
@@ -52,5 +61,16 @@
   .artwork-frame-watermark {
     right: 28px;
     bottom: 44px;
+  }
+}
+
+@media (max-width: 900px) {
+  .article-hero.artwork-article-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .article-hero.artwork-article-hero .artwork-media-frame {
+    width: 100%;
+    justify-self: stretch;
   }
 }

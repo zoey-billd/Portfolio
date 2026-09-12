@@ -608,12 +608,12 @@ function ProjectArticlePage({ project }) {
   return (
     <main className="site-shell article-shell">
       <NavBar />
-      <article className="article-wrap">
+      <article className={`article-wrap${project.mediaType === "artwork" ? " artwork-article-page" : ""}`}>
         <a className="back-link" href="#projects">
           <ArrowUpRight size={16} />
           Back to project index
         </a>
-        <header className="article-hero">
+        <header className={`article-hero${project.mediaType === "artwork" ? " artwork-article-hero" : ""}`}>
           <div className="article-title-block">
             <p className="eyebrow">{project.category}</p>
             <h1>{project.title}</h1>
