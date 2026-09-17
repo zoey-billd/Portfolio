@@ -149,7 +149,6 @@ export const projects = [
     subtitle: "建筑表面藤蔓、叶片实例与风摆属性",
     eyebrow: "Houdini 21 / Surface Growth / Wind Attributes / UE Instances",
     category: "Vegetation Tool",
-    homeSection: "technical-study",
     image: "/assets/houdini/portfolio/industrial-ivy.png",
     video: "/assets/houdini/videos/industrial-ivy.mp4",
     noteHref: "/assets/houdini/notes/ivy_h21_industrial_generator_v2_wind.md",
@@ -193,104 +192,7 @@ export const projects = [
     },
   },
   {
-    homeSection: "technical-study",
-    slug: "gnarly-trunk-hda",
-    title: "Gnarly Trunk HDA",
-    subtitle: "崎岖树干、纵向沟槽与可控轮廓",
-    eyebrow: "Houdini HDA / Trunk Surface / Branch Mesh / Leaf Density",
-    category: "Vegetation Detail",
-    image: "/assets/houdini/portfolio/gnarly-trunk.png",
-    video: "/assets/houdini/videos/gnarly-trunk.mp4",
-    noteHref: "/assets/houdini/notes/tree_labs_branch_mianbao_trunk_v5.md",
-    visual: {
-      label: "TREE DETAIL HDA",
-      hero: "GNARLY TRUNK / SURFACE CONTROL",
-      flow: "trunk wander -> lobes -> grooves -> visible branches",
-      slots: ["Wander", "Lobes", "Grooves", "Branch Radius"],
-    },
-    scope:
-      "针对树干轮廓过于圆滑的问题重做 HDA，把主干路径、体积变化、纵向沟槽和枝条半径拆成可复用控制项。",
-    tech: ["Trunk Wander", "Lobe Strength", "Groove Depth", "Visible Branch Radius"],
-    impact:
-      "把“看起来更自然”拆成可观察、可调节的形体参数，方便美术在不同树形之间快速迭代。",
-    deliverables: [
-      "Houdini gnarly trunk test scene",
-      "Gnarly trunk HDA",
-      "Trunk surface control technical note",
-    ],
-    article: {
-      intro:
-        "这个项目是树工具的局部深化：它不追求新物种，而是把树干轮廓太圆滑、表面缺少体积变化的问题拆成可控参数和独立输出。",
-      sections: [
-        {
-          heading: "设计目标",
-          items: [
-            "减少球状树结带来的不自然感，把形体变化分配到主干路径、外轮廓和纵向沟槽。",
-            "默认关闭时间轴驱动，让 HDA 拖入空场景后直接得到稳定预览，降低检查成本。",
-            "保留可选生长动画，为后续与其他树木工具组合时预留接口。",
-          ],
-        },
-        {
-          heading: "技术方案",
-          items: [
-            "使用 Trunk Wander 控制主干整体蜿蜒，并将路径变化独立于表面细节。",
-            "通过 Lobe Strength 和 Groove Depth 调整大块轮廓变化与纵向纹理感。",
-            "使用 Visible Branch Radius 管理可见树枝粗细，避免枝条输出只依赖随机结果。",
-          ],
-        },
-      ],
-    },
-  },
-  {
-    homeSection: "technical-study",
-    slug: "snow-coverage-hda",
-    title: "Snow Coverage HDA",
-    subtitle: "厚积雪覆盖、边缘堆积与 UE 材质属性",
-    eyebrow: "Houdini 21 / UE5.6 / Snow Mask / Material Attributes",
-    category: "Surface Treatment",
-    image: "/assets/houdini/portfolio/snow-coverage.png",
-    video: "/assets/houdini/videos/snow-coverage.mp4",
-    noteHref: "/assets/houdini/notes/snow_coverage_h21_ue56_v2.md",
-    visual: {
-      label: "SURFACE COVERAGE",
-      hero: "THICK SNOW / EDGE LIP",
-      flow: "mesh input -> slope mask -> snow cap -> UE material",
-      slots: ["Slope Mask", "Powder Noise", "Overhang", "Material"],
-    },
-    scope:
-      "输入任意 mesh 后生成上表面厚积雪、边缘堆积、粉雪噪声和可选下垂，并将覆盖结果整理为 UE 可读取的材质属性。",
-    tech: ["Slope Coverage", "Edge Buildup", "Powder Noise", "UE Snow Attributes"],
-    impact:
-      "把季节化资产处理封装成 HDA，让岩石、建筑和环境道具可以沿用同一套覆盖逻辑并独立调整。",
-    deliverables: [
-      "Thick snow coverage HDA",
-      "Snow coverage technical breakdown note",
-    ],
-    article: {
-      intro:
-        "积雪覆盖 HDA 关注输入模型、雪层几何和材质属性之间的分工。它保留源模型，同时输出独立雪层与可交给 UE 的属性，便于批量处理不同资产。",
-      sections: [
-        {
-          heading: "设计目标",
-          items: [
-            "根据表面朝向和风向感生成厚雪覆盖，将覆盖范围从材质表现前移到几何与属性层。",
-            "保留边缘堆积、粉雪起伏和可选下垂，让雪层和模型边界保持可检查的体积关系。",
-            "将 snow_mask、snow_thickness 等属性写出，为 UE 材质和后续筛选保留接口。",
-          ],
-        },
-        {
-          heading: "技术方案",
-          items: [
-            "输入 mesh 后计算可覆盖区域，生成独立雪层并默认保留源模型，便于对照验证。",
-            "通过厚度、覆盖强度、坡度起点、边缘堆积和噪声参数控制结果，并保持源模型不被破坏。",
-            "使用 Output View 在覆盖调试、雪层单独输出和生成点之间切换，缩短问题定位路径。",
-          ],
-        },
-      ],
-    },
-  },
-  {
-    homeSection: "technical-study",
+    homeSection: "artwork",
     slug: "personal-visual-studies",
     title: "Personal Art & Visual Studies",
     subtitle: "数字绘画、色彩与形体表现练习",
