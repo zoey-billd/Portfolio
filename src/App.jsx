@@ -77,9 +77,17 @@ const projectMediaBlueprints = [
   },
 ];
 
-const featuredProjects = projects.filter((project) => project.homeSection !== "technical-study");
+const featuredProjects = projects.filter(
+  (project) => project.homeSection !== "technical-study" && project.homeSection !== "artwork",
+);
 const technicalStudyProjects = projects.filter(
   (project) => project.homeSection === "technical-study",
+);
+const artworkProjects = projects.filter((project) => project.homeSection === "artwork");
+const artworkTiles = artworkProjects.flatMap((project) =>
+  [project.image, ...(project.galleryImages || []).map((item) => item.src)]
+    .filter(Boolean)
+    .map((src, index) => ({ project, src, index })),
 );
 
 function App() {
@@ -162,6 +170,7 @@ function App() {
       <Hero />
       <Intro />
       <Projects />
+      <Artwork />
       <Strengths />
       <Contact />
     </main>
@@ -588,16 +597,55 @@ function Projects() {
             </article>
           ))}
         </div>
-        <div className="technical-studies-block" aria-labelledby="technical-studies-title">
-          <div className="technical-studies-heading">
-            <p className="eyebrow">Technical Studies</p>
-          <h3 id="technical-studies-title">技术研究与可复用 HDA 验证</h3>
+        {technicalStudyProjects.length > 0 && (
+          <div className="technical-studies-block" aria-labelledby="technical-studies-title">
+            <div className="technical-studies-heading">
+              <p className="eyebrow">Technical Studies</p>
+              <h3 id="technical-studies-title">技术研究与可复用 HDA 验证</h3>
+            </div>
+            <div className="technical-study-list">
+              {technicalStudyProjects.map((project) => (
+                <TechnicalStudyCard project={project} key={project.slug} />
+              ))}
+            </div>
           </div>
-          <div className="technical-study-list">
-            {technicalStudyProjects.map((project) => (
-              <TechnicalStudyCard project={project} key={project.slug} />
-            ))}
+        )}
+      </div>
+    </section>
+  );
+}
+
+function Artwork() {
+  if (artworkTiles.length === 0) {
+    return null;
+  }
+
+  return (
+    <section className="section artwork-section" id="artwork" data-reveal>
+      <div className="section-inner">
+        <div className="section-heading">
+          <p className="eyebrow">Personal Art</p>
+          <div>
+            <h2>画作与视觉练习：色彩组织、形体概括与材质表现。</h2>
           </div>
+        </div>
+        <div className="artwork-grid">
+          {artworkTiles.map(({ project, src, index }) => (
+            <a
+              className="artwork-tile"
+              href={`#/projects/${project.slug}`}
+              key={`${project.slug}-${src}`}
+              data-reveal
+            >
+              <img src={src} alt={project.title} loading="lazy" />
+              {index === 0 && (
+                <div className="artwork-tile-caption">
+                  <h3>{project.title}</h3>
+                  <p>{project.subtitle}</p>
+                </div>
+              )}
+            </a>
+          ))}
         </div>
       </div>
     </section>
