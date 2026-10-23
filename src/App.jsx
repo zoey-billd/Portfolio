@@ -5,6 +5,7 @@ import {
   Code2,
   Cpu,
   GitBranch,
+  Github,
   Mail,
   Play,
   ShieldCheck,
@@ -12,13 +13,14 @@ import {
   Sparkles,
   Workflow,
 } from "lucide-react";
-import { profile, skills, strengths } from "./content.js";
+import { openSourceTools, profile, skills, strengths } from "./content.js";
 import { projects } from "./project-data.js";
 
 const navItems = [
   { label: "Intro", href: "#intro" },
   { label: "Projects", href: "#projects" },
   { label: "Strengths", href: "#strengths" },
+  { label: "Open Source", href: "#open-source" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -172,6 +174,7 @@ function App() {
       <Projects />
       <Artwork />
       <Strengths />
+      <OpenSource />
       <Contact />
     </main>
   );
@@ -752,6 +755,44 @@ function Strengths() {
           {skills.map((skill) => (
             <span key={skill}>{skill}</span>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function OpenSource() {
+  return (
+    <section className="section strengths-section" id="open-source" data-reveal>
+      <div className="section-inner">
+        <div className="section-heading compact-heading">
+          <p className="eyebrow">Open Source</p>
+          <h2>把管线上的工具拆出来，开源可用。</h2>
+        </div>
+        <div className="strength-grid">
+          {openSourceTools.map((tool, index) => (
+            <a
+              className="strength-card oss-card"
+              key={tool.title}
+              href={tool.href || profile.github}
+              target="_blank"
+              rel="noreferrer"
+              data-reveal
+              style={{ "--reveal-delay": `${index * 70}ms` }}
+              onPointerMove={handleSurfacePointerMove}
+              onPointerLeave={handleSurfacePointerLeave}
+            >
+              <Github size={26} />
+              <h3>{tool.title}</h3>
+              <p>{tool.text}</p>
+              <span className="oss-tags">{tool.tags.join(" · ")}</span>
+            </a>
+          ))}
+        </div>
+        <div className="skill-ribbon" aria-label="All repositories">
+          <a href={profile.github} target="_blank" rel="noreferrer">
+            github.com/zoey-billd · 全部仓库
+          </a>
         </div>
       </div>
     </section>

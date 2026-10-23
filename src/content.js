@@ -4,6 +4,7 @@ export const profile = {
   role: "UE5 PCG Technical Artist / Environment TA / Tools TA",
   email: "billdxie@foxmail.com",
   bilibili: "https://space.bilibili.com/28569775",
+  github: "https://github.com/zoey-billd",
   githubPages: "https://zoey-billd.github.io",
   resumePdf: "https://github.com/zoey-billd/Portfolio/blob/main/Resume_Zoey_UE_TA.pdf",
   education: "广东外语外贸大学 · 计算机科学与技术 / 网络空间安全",
@@ -117,4 +118,25 @@ export const skills = [
   "Perforce / Git",
   "HLSL / GLSL",
   "Substance / Blender",
+];
+
+export const openSourceTools = [
+  {
+    title: "ue-terrain-bridge",
+    text: "一键地形管线:Gaea → Houdini → UE5。高度图处理、权重图生成、Landscape 导入与 PCG 重生成串成一条命令。",
+    tags: ["Python", "Houdini", "UE5 Landscape", "PCG"],
+    href: "https://github.com/zoey-billd/ue-terrain-bridge",
+  },
+  {
+    title: "mech-bench-demo",
+    text: "Blender 机械验收台:5 套驱动机构、限位约束、BVH 干涉扫描与刚体跌落测试,全部经 bpy 脚本驱动与校验。",
+    tags: ["Blender bpy", "Rigid Body", "Validation"],
+    href: "https://github.com/zoey-billd/mech-bench-demo",
+  },
+  {
+    title: "UE Agent Toolchain",
+    text: "LLM 经带闸门的工具层操作 UE 编辑器:命名/缩放/间距/删除保护,ScopedTransaction 整体可回滚,JSONL 全量审计。整理中,即将开源。",
+    tags: ["UE5.6", "Ollama", "Gates", "Rollback"],
+    href: "https://github.com/zoey-billd",
+  },
 ];
