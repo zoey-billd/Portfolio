@@ -6,7 +6,7 @@ export const profile = {
   bilibili: "https://space.bilibili.com/28569775",
   github: "https://github.com/zoey-billd",
   githubPages: "https://zoey-billd.github.io",
-  resumePdf: "https://github.com/zoey-billd/Portfolio/blob/main/Resume_Zoey_UE_TA.pdf",
+  resumePdf: "https://raw.githubusercontent.com/zoey-billd/Portfolio/main/Resume_Zoey_UE_TA.pdf",
   education: "广东外语外贸大学 · 计算机科学与技术 / 网络空间安全",
   summary:
     "计算机与网络空间安全背景转向技术美术，主攻 UE5.6 PCG 程序化环境、Houdini HDA 工具、Python 编辑器管线与场景落地。擅长把视觉需求整理为输入契约、Mask、Spline、点云过滤、资产筛选和参数面板，并用调试出口、文档、版本管理和自动化脚本支撑可复用迭代。",
